@@ -82,6 +82,7 @@ dependencies {
     kapt("androidx.room:room-compiler:2.4.0")
     implementation("androidx.room:room-ktx:2.4.0")
     implementation ("org.jsoup:jsoup:1.14.3")
+    implementation ("androidx.work:work-runtime:2.7.0-alpha05")
     addDependency(Libraries.material)
     addDependency(Libraries.timber)
 
@@ -89,6 +90,7 @@ dependencies {
     androidX()
     navigation()
     network()
+    adapter()
 
     unitTests()
     uiTests()

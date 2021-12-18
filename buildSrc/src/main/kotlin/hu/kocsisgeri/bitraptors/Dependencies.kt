@@ -102,6 +102,27 @@ object AndroidX {
     const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
 }
 
+object AdapterDelegates {
+    private const val adapterDelegatesVersion = "4.3.0"
+
+    const val adapterdelegates4 =
+        "com.hannesdorfmann:adapterdelegates4:${adapterDelegatesVersion}"
+    const val adapterdelegates4dsl =
+        "com.hannesdorfmann:adapterdelegates4-kotlin-dsl:${adapterDelegatesVersion}"
+    const val adapterdelegates4dslLayoutcontainer =
+        "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-layoutcontainer:${adapterDelegatesVersion}"
+    const val adapterdelegates4dslViewbinding =
+        "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:${adapterDelegatesVersion}"
+}
+
+fun DependencyHandler.adapter() {
+    addDependency(AdapterDelegates.adapterdelegates4)
+    addDependency(AdapterDelegates.adapterdelegates4dsl)
+    addDependency(AdapterDelegates.adapterdelegates4dslLayoutcontainer)
+    addDependency(AdapterDelegates.adapterdelegates4dslViewbinding)
+}
+
+
 object Libraries {
     private object Versions {
         const val material = "1.5.0-rc01"
