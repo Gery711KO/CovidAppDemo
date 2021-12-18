@@ -7,6 +7,6 @@
     <solid android:color="@color/personIdBackground" />
 
     <corners
-        android:topLeftRadius="18dp"
-        android:bottomLeftRadius="18dp"/>
+        android:topLeftRadius="10dp"
+        android:bottomLeftRadius="10dp"/>
 </shape>
