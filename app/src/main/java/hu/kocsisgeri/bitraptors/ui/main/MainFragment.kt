@@ -26,6 +26,7 @@ class MainFragment : Fragment() {
 
         viewModel.covids.observe(viewLifecycleOwner) {
             // Set list items
+
         }
     }
 }

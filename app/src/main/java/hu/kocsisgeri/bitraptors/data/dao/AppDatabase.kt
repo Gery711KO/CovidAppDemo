@@ -9,17 +9,17 @@ import androidx.room.RoomDatabase
 abstract class AppDatabase : RoomDatabase() {
     abstract fun personDao(): PersonDao
 
-    companion object {
+    /*companion object {
         private var INSTANCE: AppDatabase? = null
         fun getInstance(context: Context): AppDatabase {
             if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(
                     context,
                     AppDatabase::class.java,
-                    "roomdb")
+                    "mainDB")
                     .build()
             }
             return INSTANCE as AppDatabase
         }
-    }
+    }*/
 }

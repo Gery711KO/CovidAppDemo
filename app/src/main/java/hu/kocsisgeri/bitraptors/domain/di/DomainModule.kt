@@ -7,6 +7,9 @@ import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import hu.kocsisgeri.bitraptors.data.dao.AppDatabase
 import hu.kocsisgeri.bitraptors.data.dao.PersonDao
+import hu.kocsisgeri.bitraptors.data.repository.CovidRepository
+import hu.kocsisgeri.bitraptors.data.scrapper.WebScrapper
+import hu.kocsisgeri.bitraptors.ui.main.MainViewModel
 import org.koin.dsl.module
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.*
@@ -32,6 +35,10 @@ val dataModule = module {
     fun provideDao(dataBase: AppDatabase): PersonDao {
         return dataBase.personDao()
     }
+
     single { provideDataBase(application = get()) }
     single { provideDao(dataBase = get()) }
+    single { WebScrapper() }
+    single { CovidRepository(dao = get(), webScrape = get()) }
+    //single { MainViewModel(repo = get())}
 }

@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 @Dao
 interface PersonDao {
@@ -17,8 +19,11 @@ interface PersonDao {
     suspend fun findByAgeLessEquals(age: Int): List<Person>
 
     @Query("SELECT * FROM person")
-    suspend fun getData(): LiveData<List<Person>>
+    fun getLiveData(): LiveData<List<Person>>
+
+    @Query("SELECT * FROM person")
+    suspend fun getData(): List<Person>
 
     @Insert
-    suspend fun insertAll(vararg users: Person)
+    suspend fun insertAll(list: List<Person>)
 }

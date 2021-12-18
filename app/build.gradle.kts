@@ -79,7 +79,7 @@ android {
 
 dependencies {
     implementation("androidx.room:room-common:2.4.0")
-    implementation("androidx.room:room-compiler:2.4.0")
+    kapt("androidx.room:room-compiler:2.4.0")
     implementation("androidx.room:room-ktx:2.4.0")
     implementation ("org.jsoup:jsoup:1.14.3")
     addDependency(Libraries.material)

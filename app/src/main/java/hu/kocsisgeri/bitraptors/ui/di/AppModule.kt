@@ -8,5 +8,5 @@ import org.koin.dsl.module
 val appModule = module {
     viewModel { SplashViewModel() }
 
-    viewModel { MainViewModel() }
+    viewModel { MainViewModel(repo = get()) }
 }

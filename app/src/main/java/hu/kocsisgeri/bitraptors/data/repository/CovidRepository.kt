@@ -1,7 +1,28 @@
 package hu.kocsisgeri.bitraptors.data.repository
 
+import hu.kocsisgeri.bitraptors.data.dao.Person
 import hu.kocsisgeri.bitraptors.data.dao.PersonDao
 import hu.kocsisgeri.bitraptors.data.scrapper.WebScrapper
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlin.coroutines.CoroutineContext
 
-class CovidRepository(dao : PersonDao, webScrape: WebScrapper) {
+class CovidRepository(
+    override val coroutineContext: CoroutineContext = Dispatchers.IO,
+    private val dao: PersonDao,
+    private val webScrape: WebScrapper,
+) : CoroutineScope {
+
+    fun getCovidList(): Flow<List<Person>> = flow {
+        val data = dao.getData().let { cache ->
+            if (cache.isEmpty()) {
+                val web = webScrape.getDataFromWeb()
+                dao.insertAll(web)
+                web
+            } else cache
+        }
+        emit(data)
+    }
 }
