@@ -14,6 +14,7 @@
         <entry key="..\:/GitHubRepos/CovidAppDemo/app/src/main/res/drawable/rounded_corner.xml" value="0.2526041666666667" />
         <entry key="..\:/GitHubRepos/CovidAppDemo/app/src/main/res/drawable/rounded_left.xml" value="0.2526041666666667" />
         <entry key="..\:/GitHubRepos/CovidAppDemo/app/src/main/res/drawable/rounded_right.xml" value="0.2526041666666667" />
+        <entry key="..\:/GitHubRepos/CovidAppDemo/app/src/main/res/drawable/vaccinated_border.xml" value="0.21875" />
         <entry key="..\:/GitHubRepos/CovidAppDemo/app/src/main/res/layout/activity_main.xml" value="0.23645833333333333" />
         <entry key="..\:/GitHubRepos/CovidAppDemo/app/src/main/res/layout/activity_splash.xml" value="0.18" />
         <entry key="..\:/GitHubRepos/CovidAppDemo/app/src/main/res/layout/cell_person.xml" value="0.25" />

@@ -83,6 +83,7 @@ dependencies {
     implementation("androidx.room:room-ktx:2.4.0")
     implementation ("org.jsoup:jsoup:1.14.3")
     implementation ("androidx.work:work-runtime:2.7.0-alpha05")
+    implementation ("com.android.support:design:29.0.0")
     addDependency(Libraries.material)
     addDependency(Libraries.timber)
 

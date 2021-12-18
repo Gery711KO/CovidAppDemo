@@ -11,4 +11,8 @@ class MainViewModel(repo : CovidRepository) : ViewModel() {
     val covids = repo.getCovidList().map{
         it.sortedByDescending { x -> x.id }
     }.asLiveData()
+
+    val vaccinated = repo.getCovidVaccinated().asLiveData()
+
+    val maxId = repo.getCovidMaxId().asLiveData()
 }

@@ -43,8 +43,15 @@ class MainFragment : Fragment() {
         viewModel.covids.observe(viewLifecycleOwner) {
             // Set list items
             //message.text = it.toString()
-            it.sortedBy { x -> x.id }
             listAdapter.updateData(it)
+        }
+
+        viewModel.vaccinated.observe(viewLifecycleOwner) {
+            vaccinated_text.text = it.toString()
+        }
+
+        viewModel.maxId.observe(viewLifecycleOwner) {
+            dead_text.text = it.toString()
         }
     }
 }

@@ -25,4 +25,14 @@ class CovidRepository(
         }
         emit(data)
     }
+
+    fun getCovidVaccinated() :Flow<String?> = flow {
+        val vaccinatedNum = webScrape.getVaccinated()
+        emit(vaccinatedNum)
+    }
+
+    fun getCovidMaxId() :Flow<String?> = flow {
+        val maxId = webScrape.getMaxId()
+        emit(maxId)
+    }
 }
