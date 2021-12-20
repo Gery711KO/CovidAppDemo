@@ -1,0 +1,19 @@
+hu/kocsisgeri/bitraptors/data/dao/AppDatabase_Impl.java
+ hu.kocsisgeri.bitraptors.data.dao.AppDatabase_Impl
+ hu.kocsisgeri.bitraptors.data.dao.AppDatabase_Impl$1
+hu/kocsisgeri/bitraptors/databinding/CellPersonBinding.java
+ hu.kocsisgeri.bitraptors.databinding.CellPersonBinding
+hu/kocsisgeri/bitraptors/data/dao/PersonDao_Impl.java
+ hu.kocsisgeri.bitraptors.data.dao.PersonDao_Impl
+ hu.kocsisgeri.bitraptors.data.dao.PersonDao_Impl$1
+ hu.kocsisgeri.bitraptors.data.dao.PersonDao_Impl$2
+ hu.kocsisgeri.bitraptors.data.dao.PersonDao_Impl$3
+ hu.kocsisgeri.bitraptors.data.dao.PersonDao_Impl$4
+hu/kocsisgeri/bitraptors/databinding/ActivityMainBinding.java
+ hu.kocsisgeri.bitraptors.databinding.ActivityMainBinding
+hu/kocsisgeri/bitraptors/databinding/FragmentMainBinding.java
+ hu.kocsisgeri.bitraptors.databinding.FragmentMainBinding
+hu/kocsisgeri/bitraptors/databinding/ActivitySplashBinding.java
+ hu.kocsisgeri.bitraptors.databinding.ActivitySplashBinding
+hu/kocsisgeri/bitraptors/BuildConfig.java
+ hu.kocsisgeri.bitraptors.BuildConfig
