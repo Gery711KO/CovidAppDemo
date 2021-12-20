@@ -6,13 +6,9 @@ import hu.kocsisgeri.bitraptors.data.scrapper.InternetChecker
 import kotlinx.coroutines.flow.map
 
 class MainViewModel(repo : CovidRepository) : ViewModel() {
-    val covids = repo.getCovidList().map{
-        it.subList(it.size-50,it.size).sortedByDescending { x -> x.id }
-    }.asLiveData()
+    val covids = repo.getCovidList().asLiveData()
 
-    val covidsSize = covids.map{
-        it.size
-    }
+    //al covidsSize = covids.value.s
 
     val dbSize = repo.getDatabaseSize().asLiveData()
 

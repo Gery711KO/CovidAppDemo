@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.DiffUtil
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
+import hu.kocsisgeri.bitraptors.data.dao.Person
+import hu.kocsisgeri.bitraptors.data.repository.ApiResult
 import timber.log.Timber
 
 open class BasicListAdapter(
@@ -18,7 +20,7 @@ open class BasicListAdapter(
         items = emptyList()
     }
 
-    fun updateData(list: List<ListItem>) {
+    fun updateData(list: List<Person>) {
         items = list
         try {
             notifyDataSetChanged()

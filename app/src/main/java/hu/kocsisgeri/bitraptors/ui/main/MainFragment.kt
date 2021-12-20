@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import hu.kocsisgeri.bitraptors.data.repository.ApiResult
 import hu.kocsisgeri.bitraptors.databinding.FragmentMainBinding
 import hu.kocsisgeri.bitraptors.ui.adapter.BasicListAdapter
 import hu.kocsisgeri.bitraptors.ui.adapter.cell.cellPersonDelegate
 import hu.kocsisgeri.bitraptors.ui.decoration.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.coroutines.flow.catch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
@@ -38,19 +38,19 @@ class MainFragment : Fragment() {
         }
         var text2 = ""
         var text3 = ""
-        var maxSize = viewModel.covidsSize.value?.toInt()
-
-        viewModel.dbSize.observe(viewLifecycleOwner) {
-            counterDB.text = it.toString()
-        }
 
         viewModel.covids.observe(viewLifecycleOwner) {
-            listAdapter.updateData(it)
-            viewRC.visibility = View.VISIBLE
-
-            if (it.maxOf { x -> x.id } == maxSize)
+            when(it)
             {
-                progressBar.visibility = View.GONE
+                is ApiResult.Success -> {
+                    listAdapter.updateData(it.data)
+                    viewRC.visibility = View.VISIBLE
+                    progressBar.visibility = View.GONE}
+                is ApiResult.Progress -> {
+                    progressBar.progress = it.percentage}
+                is ApiResult.Error -> {
+
+                }
             }
         }
 
