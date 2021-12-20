@@ -1,6 +1,9 @@
 package hu.kocsisgeri.bitraptors.ui.adapter
 
+import android.annotation.SuppressLint
+import androidx.recyclerview.widget.DiffUtil
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
+import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import timber.log.Timber
 

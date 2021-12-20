@@ -1,20 +1,17 @@
 package hu.kocsisgeri.bitraptors.ui.main
 
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.coroutineScope
-import androidx.lifecycle.liveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import hu.kocsisgeri.bitraptors.databinding.FragmentMainBinding
 import hu.kocsisgeri.bitraptors.ui.adapter.BasicListAdapter
 import hu.kocsisgeri.bitraptors.ui.adapter.cell.cellPersonDelegate
-import hu.kocsisgeri.bitraptors.ui.decoration.Decoration
 import hu.kocsisgeri.bitraptors.ui.decoration.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.coroutines.flow.catch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
@@ -39,19 +36,39 @@ class MainFragment : Fragment() {
             adapter = listAdapter
             addItemDecoration(decoration)
         }
+        var text2 = ""
+        var text3 = ""
+        var maxSize = viewModel.covidsSize.value?.toInt()
+
+        viewModel.dbSize.observe(viewLifecycleOwner) {
+            counterDB.text = it.toString()
+        }
 
         viewModel.covids.observe(viewLifecycleOwner) {
-            // Set list items
-            //message.text = it.toString()
             listAdapter.updateData(it)
+            viewRC.visibility = View.VISIBLE
+
+            if (it.maxOf { x -> x.id } == maxSize)
+            {
+                progressBar.visibility = View.GONE
+            }
         }
 
         viewModel.vaccinated.observe(viewLifecycleOwner) {
             vaccinated_text.text = it.toString()
+            text2 = it.toString()
+
+            if (text2.isNotBlank() && text3.isNotBlank())
+            {
+                progressCircle.visibility = View.GONE
+                vaccinatedLayout.visibility = View.VISIBLE
+                deadLayout.visibility = View.VISIBLE
+            }
         }
 
         viewModel.maxId.observe(viewLifecycleOwner) {
             dead_text.text = it.toString()
+            text3 = it.toString()
         }
     }
 }

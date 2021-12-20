@@ -5,8 +5,7 @@ import hu.kocsisgeri.bitraptors.data.dao.PersonDao
 import hu.kocsisgeri.bitraptors.data.scrapper.WebScrapper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
 import kotlin.coroutines.CoroutineContext
 
 class CovidRepository(
@@ -14,16 +13,43 @@ class CovidRepository(
     private val dao: PersonDao,
     private val webScrape: WebScrapper,
 ) : CoroutineScope {
-
     fun getCovidList(): Flow<List<Person>> = flow {
-        val data = dao.getData().let { cache ->
+        var index = 0
+        dao.getData().let { cache ->
             if (cache.isEmpty()) {
-                val web = webScrape.getDataFromWeb()
-                dao.insertAll(web)
-                web
-            } else cache
+                while(index <= webScrape.getLastPage())
+                {
+                    val web = webScrape.getDataFromWeb(index)
+                    if (index == 0){
+                        dao.insertAll(web)
+                        emit(web)
+                    }
+                    else{
+                        dao.insertAll(web)
+                    }
+                    index++
+                }
+                emit(dao.getData())
+            }else if (cache.size != webScrape.getMaxId()?.toInt()) {
+                emit(cache.subList(cache.size-50, cache.size))
+                while(index <= webScrape.getLastPage())
+                {
+                    getDatabaseSize()
+                    val web = webScrape.getDataFromWeb(index)
+                    if (web.minOf { x -> x.id } < dao.getData().minOf { y -> y.id })
+                    {
+                        dao.insertAll(web)
+                    }
+                    index++
+                }
+                emit(dao.getData())
+            } else emit(cache)
         }
-        emit(data)
+    }
+
+    fun getDatabaseSize() : Flow<Int> = flow {
+        val size = dao.getData().size
+        emit(size)
     }
 
     fun getCovidVaccinated() :Flow<String?> = flow {
