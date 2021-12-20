@@ -22,6 +22,14 @@ class WebScrapper {
         } ?: emptyList<Person>()
     }
 
+    suspend fun getFirstPageMax(index: Int): Int? = withContext(Dispatchers.IO) {
+        val doc = Jsoup.connect("https://koronavirus.gov.hu/elhunytak?page=0").get()
+        val children = doc.select("tbody").firstOrNull()?.children()
+
+        val maxID = children?.first()?.child(0)?.text()?.toInt()
+        maxID
+    }
+
     suspend fun getLastPage(): Int = withContext(Dispatchers.IO) {
         Jsoup.connect("https://koronavirus.gov.hu/elhunytak").get()
             .getElementsByAttributeValue("class", "pager-last")

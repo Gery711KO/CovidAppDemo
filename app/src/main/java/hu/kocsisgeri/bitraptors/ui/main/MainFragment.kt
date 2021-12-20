@@ -43,7 +43,7 @@ class MainFragment : Fragment() {
         viewModel.covids.observe(viewLifecycleOwner) {
             when (it) {
                 is ApiResult.Success -> {
-                    listAdapter.updateData(it.data)
+                    listAdapter.updateData(it.data.sortedByDescending { x -> x.id })
                     viewRC.visibility = View.VISIBLE
                     progressBar.visibility = View.GONE
                 }

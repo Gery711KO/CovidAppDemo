@@ -16,11 +16,12 @@ class CovidRepository(
 ) : CoroutineScope {
     fun getCovidList(): Flow<ApiResult<List<Person>>> = flow {
         var index = 0
-        val isCacheOutdated = dao.getData().size != webScrape.getMaxId()?.toInt()
+        val isMaxFound = dao.getData().maxOf{x -> x.id} != webScrape.getMaxId()?.toInt()
+        val isMinFound = dao.getData().minOf{x -> x.id} != 1
         val lastPage = webScrape.getLastPage().toDouble()
 
         dao.getData().let { cache ->
-            if (isCacheOutdated) {
+            if (isMinFound && isMaxFound) {
                 val firstCacheId = dao.getData().minByOrNull { y -> y.id }?.id ?: 0
                 val lastCacheId = dao.getData().maxByOrNull { x -> x.id }?.id ?: 0
                 while (index <= lastPage) {
