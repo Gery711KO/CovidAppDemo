@@ -31,7 +31,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.viewRC.apply{
+        binding.viewRC.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = listAdapter
             addItemDecoration(decoration)
@@ -40,14 +40,15 @@ class MainFragment : Fragment() {
         var text3 = ""
 
         viewModel.covids.observe(viewLifecycleOwner) {
-            when(it)
-            {
+            when (it) {
                 is ApiResult.Success -> {
                     listAdapter.updateData(it.data)
                     viewRC.visibility = View.VISIBLE
-                    progressBar.visibility = View.GONE}
+                    progressBar.visibility = View.GONE
+                }
                 is ApiResult.Progress -> {
-                    progressBar.progress = it.percentage}
+                    progressBar.progress = it.percentage
+                }
                 is ApiResult.Error -> {
 
                 }
@@ -58,8 +59,7 @@ class MainFragment : Fragment() {
             vaccinated_text.text = it.toString()
             text2 = it.toString()
 
-            if (text2.isNotBlank() && text3.isNotBlank())
-            {
+            if (text2.isNotBlank() && text3.isNotBlank()) {
                 progressCircle.visibility = View.GONE
                 vaccinatedLayout.visibility = View.VISIBLE
                 deadLayout.visibility = View.VISIBLE

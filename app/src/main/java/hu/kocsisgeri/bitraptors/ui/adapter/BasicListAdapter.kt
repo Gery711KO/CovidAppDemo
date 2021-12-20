@@ -11,7 +11,7 @@ import timber.log.Timber
 
 open class BasicListAdapter(
     vararg adapters: AdapterDelegate<List<ListItem>>
-) : ListDelegationAdapter<List<ListItem>>(*adapters){
+) : ListDelegationAdapter<List<ListItem>>(*adapters) {
 
     val listItems: List<ListItem> get() = items
     val itemsCount: Int get() = itemCount
@@ -29,14 +29,17 @@ open class BasicListAdapter(
             Timber.e(e, "Failed to update list")
         }
     }
+
     fun notifyItemUpdate(pos: Int) {
         notifyItemChanged(pos)
     }
+
     fun addDelegates(vararg delegates: AdapterDelegate<List<ListItem>>) {
         delegates.forEach {
             delegatesManager.addDelegate(it)
         }
     }
+
     fun setFallbackDelegate(delegate: AdapterDelegate<List<ListItem>>) {
         delegatesManager.fallbackDelegate = delegate
     }
