@@ -22,12 +22,17 @@ class CovidRepository(
         dao.getData().let { cache ->
             if (isCacheOutdated) {
                 val firstCacheId = dao.getData().minByOrNull { y -> y.id }?.id ?: 0
+                val lastCacheId = dao.getData().maxByOrNull { x -> x.id }?.id ?: 0
                 while (index <= lastPage) {
                     val web = webScrape.getDataFromWeb(index)
+
                     if (web.any { x -> x.id > firstCacheId }) {
                         dao.insertAll(web)
+                    } else if (web.any { x -> x.id > lastCacheId }) {
+                        dao.insertAll(web)
                     } else break
-                    emit(ApiResult.Progress(((index / lastPage) *100).roundToInt()))
+
+                    emit(ApiResult.Progress(((index / lastPage) * 100).roundToInt()))
                     index++
                 }
                 emit(ApiResult.Success(dao.getData()))

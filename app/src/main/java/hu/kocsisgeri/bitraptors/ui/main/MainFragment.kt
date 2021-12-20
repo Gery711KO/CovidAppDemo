@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import hu.kocsisgeri.bitraptors.data.repository.ApiResult
 import hu.kocsisgeri.bitraptors.databinding.FragmentMainBinding
 import hu.kocsisgeri.bitraptors.ui.adapter.BasicListAdapter
+import hu.kocsisgeri.bitraptors.ui.adapter.DiffListAdapter
 import hu.kocsisgeri.bitraptors.ui.adapter.cell.cellPersonDelegate
 import hu.kocsisgeri.bitraptors.ui.decoration.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -18,7 +19,7 @@ class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
 
     private val viewModel: MainViewModel by viewModel()
-    private val listAdapter = BasicListAdapter(cellPersonDelegate())
+    private val listAdapter = DiffListAdapter(cellPersonDelegate())
     private val decoration = ItemOffsetDecoration()
 
     override fun onCreateView(
