@@ -19,7 +19,11 @@ class FilterFragment : BottomSheetDialogFragment() {
     lateinit var binding: FilterDialogBinding
     private val filterVM: FilterViewModel by viewModel()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FilterDialogBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -28,20 +32,33 @@ class FilterFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.filterButton.setOnClickListener {
             filterVM.filterButtonFunc(
-                age_min.text.toString().toInt() ?: 0,
-                age_max.text.toString().toInt() ?: 150,
-                keyword.text.toString() ?: ""
+                age_min.text.toString().let {
+                    if (it.isNotEmpty()) {
+                        it.toInt()
+                    } else 0
+                },
+                age_max.text.toString().let {
+                    if (it.isNotEmpty()) {
+                        it.toInt()
+                    } else 150
+                },
+                keyword.text.toString()
             )
+
+            binding.filtersUsed.text = "[minAge: ${age_min.text}] [maxAge: ${age_max.text}] [keyWord: ${keyword.text}]"
         }
 
-        binding.clearButton.setOnClickListener{
+        binding.clearButton.setOnClickListener {
             filterVM.clearButtonFunc()
+
+            binding.filtersUsed.text = ""
         }
         initDialog()
     }
 
     private fun initDialog() {
         requireDialog().window?.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        requireDialog().window?.statusBarColor = requireContext().getColor(android.R.color.transparent)
+        requireDialog().window?.statusBarColor =
+            requireContext().getColor(android.R.color.transparent)
     }
 }

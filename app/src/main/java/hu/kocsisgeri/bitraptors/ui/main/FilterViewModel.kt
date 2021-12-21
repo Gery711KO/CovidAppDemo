@@ -16,3 +16,4 @@ class FilterViewModel (private val repo : CovidRepository) : ViewModel() {
         repo.filter.tryEmit(Filter(null, null, null))
     }
 }
+

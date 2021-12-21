@@ -136,6 +136,33 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin" />
 
+            <TextView
+                android:id="@+id/internetConnectionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:text="Nincs internet kapcsolat!"
+                android:textAlignment="textEnd"
+                android:textColor="#FF2424"
+                android:textSize="12dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/caseCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                tools:text="30123"
+                android:textAlignment="textEnd"
+                android:textColor="#DADADA"
+                android:textSize="12dp"
+                android:visibility="visible" />
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
         <!-- Linear progress indicator -->

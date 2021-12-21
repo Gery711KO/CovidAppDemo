@@ -6,8 +6,6 @@ import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
 
 class WebScrapper {
-    var list = mutableListOf<Person>()
-
     suspend fun getDataFromWeb(index: Int): List<Person> = withContext(Dispatchers.IO) {
         val doc = Jsoup.connect("https://koronavirus.gov.hu/elhunytak?page=$index").get()
         val children = doc.select("tbody").firstOrNull()?.children()
@@ -22,14 +20,6 @@ class WebScrapper {
         } ?: emptyList<Person>()
     }
 
-    suspend fun getFirstPageMax(index: Int): Int? = withContext(Dispatchers.IO) {
-        val doc = Jsoup.connect("https://koronavirus.gov.hu/elhunytak?page=0").get()
-        val children = doc.select("tbody").firstOrNull()?.children()
-
-        val maxID = children?.first()?.child(0)?.text()?.toInt()
-        maxID
-    }
-
     suspend fun getLastPage(): Int = withContext(Dispatchers.IO) {
         Jsoup.connect("https://koronavirus.gov.hu/elhunytak").get()
             .getElementsByAttributeValue("class", "pager-last")
@@ -37,27 +27,14 @@ class WebScrapper {
             .toString().split("=")[1].toInt()
     }
 
-    suspend fun getVaccinated(): String? = withContext(Dispatchers.IO) {
+    suspend fun getVaccinated(): String = withContext(Dispatchers.IO) {
         Jsoup.connect("https://koronavirus.gov.hu").get()
-            .getElementsByAttributeValue("id", "api-beoltottak").firstOrNull()?.text()
+            .getElementsByAttributeValue("id", "api-beoltottak").get(0).text()
     }
 
-    suspend fun getMaxId(): String? = withContext(Dispatchers.IO) {
+    suspend fun getMaxId(): String = withContext(Dispatchers.IO) {
         Jsoup.connect("https://koronavirus.gov.hu/elhunytak").get()
             .getElementsByAttributeValue("class", "views-field views-field-field-elhunytak-sorszam")
             .get(1).text()
     }
-
-    /*if (children != null) {
-        for (element in children) {
-            val temp = Person(
-                element.child(0).text().toInt(),
-                element.child(1).text(),
-                element.child(2).text().toInt(),
-                element.child(3).text()
-            )
-            list.add(temp)
-        }
-    }
-    list*/
 }

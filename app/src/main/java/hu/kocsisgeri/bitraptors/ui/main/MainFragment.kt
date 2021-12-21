@@ -41,39 +41,49 @@ class MainFragment : Fragment() {
             FilterFragment.newInstance().show(childFragmentManager, FilterFragment::class.java.canonicalName)
         }
 
-        var text2 = ""
-        var text3 = ""
-
         viewModel.covids.observe(viewLifecycleOwner) {
             when (it) {
                 is ApiResult.Success -> {
                     listAdapter.updateData(it.data)
                     viewRC.visibility = View.VISIBLE
                     progressBar.visibility = View.GONE
+                    caseCount.text = it.data.size.toString()
+                    binding.viewRC.scrollToPosition(0)
                 }
                 is ApiResult.Progress -> {
                     progressBar.progress = it.percentage
                 }
                 is ApiResult.Error -> {
-
+                    internetConnectionText.visibility = View.VISIBLE
                 }
             }
         }
 
         viewModel.vaccinated.observe(viewLifecycleOwner) {
-            vaccinated_text.text = it.toString()
-            text2 = it.toString()
-
-            if (text2.isNotBlank() && text3.isNotBlank()) {
-                progressCircle.visibility = View.GONE
-                vaccinatedLayout.visibility = View.VISIBLE
-                deadLayout.visibility = View.VISIBLE
+            when (it){
+                is ApiResult.Success -> {
+                    vaccinated_text.text = it.data
+                    progressCircle.visibility = View.GONE
+                    vaccinatedLayout.visibility = View.VISIBLE
+                }
+                is ApiResult.Error -> {
+                    internetConnectionText.visibility = View.VISIBLE
+                }
             }
         }
 
         viewModel.maxId.observe(viewLifecycleOwner) {
-            dead_text.text = it.toString()
-            text3 = it.toString()
+
+            when (it){
+                is ApiResult.Success -> {
+                    dead_text.text = it.data
+                    progressCircle.visibility = View.GONE
+                    deadLayout.visibility = View.VISIBLE
+                }
+                is ApiResult.Error -> {
+                    internetConnectionText.visibility = View.VISIBLE
+                }
+            }
         }
     }
 }

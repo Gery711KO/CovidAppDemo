@@ -1,4 +1,5 @@
 package hu.kocsisgeri.bitraptors.data.logic
+
 import androidx.compose.ui.text.toLowerCase
 import hu.kocsisgeri.bitraptors.data.dao.Person
 import kotlinx.coroutines.Dispatchers
@@ -9,13 +10,13 @@ data class Filter(
     val maxAge: Int? = null,
     val keyword: String? = null
 ) {
-    fun getFilteredList(list: List<Person>) : List<Person> {
-        list.filter{ x ->
-            x.age > minAge?: 0 &&
-            x.age < maxAge?: 150 &&
-            x.baseIllnesses.lowercase().contains(keyword?.lowercase()?: "") &&
-            x.sex.lowercase().contains(keyword?.lowercase()?: "")
+    fun getFilteredList(list: List<Person>): List<Person> {
+
+        return list.filter {
+            it.age > this.minAge ?: 0 &&
+                    it.age < this.maxAge ?: 150 &&
+                    it.baseIllnesses.lowercase().contains(this.keyword?.lowercase() ?: "") &&
+                    it.sex.lowercase().contains(this.keyword?.lowercase() ?: "")
         }
-        return list
     }
 }
