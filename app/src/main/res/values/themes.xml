@@ -20,24 +20,7 @@
         <item name="android:navigationBarColor">@color/black</item>
     </style>
 
-    <style name="ErrorTextAppearance" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@android:color/holo_orange_dark</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textStyle">bold|italic</item>
-    </style>
-
-    <style name="HelperTextAppearance" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">#DADADA</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textStyle">bold|italic</item>
-    </style>
-
-    <style name="HintTextAppearance" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">#DADADA</item>
-        <item name="android:textSize">10sp</item>
-    </style>
-
-    <style name="EditTextThemeOverlay" parent="ThemeOverlay.AppCompat">
-        <item name="colorAccent">#202020</item>
+    <style name="TextLabel" parent="TextAppearance.Design.Hint">
+        <item name="android:textColor">#E8E8E8</item>
     </style>
 </resources>

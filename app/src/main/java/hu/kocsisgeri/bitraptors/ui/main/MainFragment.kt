@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import hu.kocsisgeri.bitraptors.data.repository.ApiResult
+import hu.kocsisgeri.bitraptors.databinding.FilterDialogBinding
 import hu.kocsisgeri.bitraptors.databinding.FragmentMainBinding
 import hu.kocsisgeri.bitraptors.ui.adapter.DiffListAdapter
 import hu.kocsisgeri.bitraptors.ui.adapter.cell.cellPersonDelegate

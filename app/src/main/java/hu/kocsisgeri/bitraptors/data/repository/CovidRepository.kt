@@ -2,7 +2,8 @@ package hu.kocsisgeri.bitraptors.data.repository
 
 import hu.kocsisgeri.bitraptors.data.dao.Person
 import hu.kocsisgeri.bitraptors.data.dao.PersonDao
-import hu.kocsisgeri.bitraptors.data.scrapper.WebScrapper
+import hu.kocsisgeri.bitraptors.data.logic.Filter
+import hu.kocsisgeri.bitraptors.data.logic.WebScrapper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
@@ -14,10 +15,12 @@ class CovidRepository(
     private val dao: PersonDao,
     private val webScrape: WebScrapper,
 ) : CoroutineScope {
+    val filter = MutableStateFlow<Filter>(Filter(null,null,null))
+
     fun getCovidList(): Flow<ApiResult<List<Person>>> = flow {
         var index = 0
-        val isMaxFound = dao.getData().maxOf{x -> x.id} != webScrape.getMaxId()?.toInt()
-        val isMinFound = dao.getData().minOf{x -> x.id} != 1
+        val isMaxFound = dao.getData().maxOfOrNull{x -> x.id}?: 0 != webScrape.getMaxId()?.toInt()
+        val isMinFound = dao.getData().minOfOrNull{x -> x.id}?: 0 != 1
         val lastPage = webScrape.getLastPage().toDouble()
 
         dao.getData().let { cache ->
@@ -39,6 +42,11 @@ class CovidRepository(
                 emit(ApiResult.Success(dao.getData().subList(dao.getData().size-100, dao.getData().size).sortedByDescending { x -> x.id }))
             } else emit(ApiResult.Success(cache.subList(cache.size-100, cache.size).sortedByDescending { x -> x.id }))
         }
+    }.flatMapLatest { halottak -> filter.map{
+        if(halottak is ApiResult.Success){
+            halottak.copy(it.getFilteredList(halottak.data))
+        }else halottak
+    }
     }
 
     fun getDatabaseSize(): Flow<Int> = flow {

@@ -8,8 +8,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import hu.kocsisgeri.bitraptors.data.dao.AppDatabase
 import hu.kocsisgeri.bitraptors.data.dao.PersonDao
 import hu.kocsisgeri.bitraptors.data.repository.CovidRepository
-import hu.kocsisgeri.bitraptors.data.scrapper.WebScrapper
-import hu.kocsisgeri.bitraptors.ui.main.MainViewModel
+import hu.kocsisgeri.bitraptors.data.logic.WebScrapper
 import org.koin.dsl.module
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.*

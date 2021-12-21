@@ -21,55 +21,64 @@
         android:alpha="0.5"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/age"
+        android:id="@+id/age_min_layout"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:hint="Age"
+        android:hint="MinAge"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/age_max"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
         app:hintTextColor="#8C8C8C"
         android:textColorHint="#DADADA">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_corner_filtertext"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/age_relation"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:hint="Relation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/age"
-        app:layout_constraintTop_toTopOf="parent"
-        app:hintTextColor="#8C8C8C"
-        android:textColorHint="#DADADA"
-        android:layout_marginTop="16dp">
-
-        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/age_min"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:background="@drawable/rounded_corner_filtertext"/>
+            android:background="@drawable/rounded_corner_filtertext"
+            android:textColor="#E8E8E8"
+            android:textCursorDrawable="@null"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/keyword"
+        android:id="@+id/age_max_layout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:hint="MaxAge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/age_min_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:hintTextColor="#8C8C8C"
+        android:textColorHint="#DADADA"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/age_max"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="@drawable/rounded_corner_filtertext"
+            android:textColor="#E8E8E8"
+            android:textCursorDrawable="@null"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/keyword_layout"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Keyword"
+        android:hint="Keyword (sex/illness)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/age"
+        app:layout_constraintTop_toBottomOf="@+id/age_min_layout"
         app:hintTextColor="#8C8C8C"
         android:textColorHint="#DADADA"
         android:layout_marginTop="16dp"
@@ -77,10 +86,13 @@
         android:layout_marginRight="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/keyword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner_filtertext"
             android:padding="16dp"
-            android:background="@drawable/rounded_corner_filtertext" />
+            android:textColor="#E8E8E8"
+            android:textCursorDrawable="@null" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,13 +100,14 @@
         android:id="@+id/filters_used"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/keyword"
+        app:layout_constraintTop_toBottomOf="@id/keyword_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:padding="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:textColor="#DADADA"
         android:background="@drawable/rounded_corner_filtertext"/>
 
     <Button
@@ -102,6 +115,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Filter"
+        android:textSize="20dp"
         android:layout_marginBottom="40dp"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="60dp"
@@ -116,10 +130,11 @@
         android:backgroundTint="#202020" />
 
     <Button
-        android:id="@+id/clear_filter_button"
+        android:id="@+id/clear_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Reset"
+        android:textSize="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="40dp"
         android:layout_marginRight="60dp"

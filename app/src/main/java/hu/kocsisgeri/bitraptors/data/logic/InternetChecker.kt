@@ -1,4 +1,4 @@
-package hu.kocsisgeri.bitraptors.data.scrapper
+package hu.kocsisgeri.bitraptors.data.logic
 
 import android.content.Context
 import android.net.ConnectivityManager

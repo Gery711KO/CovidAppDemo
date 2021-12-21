@@ -1,4 +1,4 @@
-package hu.kocsisgeri.bitraptors.data.scrapper
+package hu.kocsisgeri.bitraptors.data.logic
 
 import hu.kocsisgeri.bitraptors.data.dao.Person
 import kotlinx.coroutines.Dispatchers
