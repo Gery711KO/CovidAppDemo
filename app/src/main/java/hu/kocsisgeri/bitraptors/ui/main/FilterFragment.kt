@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import hu.kocsisgeri.bitraptors.data.logic.Filter
 import hu.kocsisgeri.bitraptors.databinding.FilterDialogBinding
 import kotlinx.android.synthetic.main.filter_dialog.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,11 +24,13 @@ class FilterFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FilterDialogBinding.inflate(inflater, container, false)
+        //getDialog()?.getWindow()?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.filterButton.setOnClickListener {
             filterVM.filterButtonFunc(
                 age_min.text.toString().let {

@@ -7,41 +7,42 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/purple_700"
-    app:behavior_hideable="false"
+    android:elevation="100dp"
+    app:behavior_hideable="true"
     app:behavior_peekHeight="30dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="4dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:alpha="0.5"
         android:background="@color/black"
-        android:alpha="0.5"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/age_min_layout"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:hint="MinAge"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/age_max_layout"
-        android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:hint="MinAge"
+        android:textColorHint="#DADADA"
         app:hintTextColor="#8C8C8C"
-        android:textColorHint="#DADADA">
+        app:layout_constraintEnd_toStartOf="@id/age_max_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/age_min"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
             android:background="@drawable/rounded_corner_filtertext"
+            android:padding="16dp"
             android:textColor="#E8E8E8"
-            android:textCursorDrawable="@null"/>
+            android:textCursorDrawable="@null" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,23 +51,23 @@
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
         android:hint="MaxAge"
+        android:textColorHint="#DADADA"
+        app:hintTextColor="#8C8C8C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/age_min_layout"
-        app:layout_constraintTop_toTopOf="parent"
-        app:hintTextColor="#8C8C8C"
-        android:textColorHint="#DADADA"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/age_max"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
             android:background="@drawable/rounded_corner_filtertext"
+            android:padding="16dp"
             android:textColor="#E8E8E8"
-            android:textCursorDrawable="@null"/>
+            android:textCursorDrawable="@null" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,15 +76,15 @@
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
         android:hint="Keyword (sex/illness)"
+        android:textColorHint="#DADADA"
+        app:hintTextColor="#8C8C8C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/age_min_layout"
-        app:hintTextColor="#8C8C8C"
-        android:textColorHint="#DADADA"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
+        app:layout_constraintTop_toBottomOf="@+id/age_min_layout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/keyword"
@@ -100,52 +101,52 @@
         android:id="@+id/filters_used"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/keyword_layout"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/rounded_corner_filtertext"
+        android:padding="16dp"
+        android:textColor="#DADADA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:padding="16dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:textColor="#DADADA"
-        android:background="@drawable/rounded_corner_filtertext"/>
+        app:layout_constraintTop_toBottomOf="@id/keyword_layout" />
 
     <Button
         android:id="@+id/filter_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Filter"
-        android:textSize="20dp"
-        android:layout_marginBottom="40dp"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="60dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="#202020"
         android:paddingLeft="30dp"
+        android:paddingTop="16dp"
         android:paddingRight="30dp"
-        app:layout_constraintTop_toBottomOf="@id/filters_used"
+        android:paddingBottom="16dp"
+        android:text="Filter"
+        android:textColor="#DADADA"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColor="#DADADA"
-        android:backgroundTint="#202020" />
+        app:layout_constraintTop_toBottomOf="@id/filters_used" />
 
     <Button
         android:id="@+id/clear_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reset"
-        android:textSize="20dp"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="40dp"
         android:layout_marginRight="60dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="#202020"
         android:paddingLeft="30dp"
+        android:paddingTop="16dp"
         android:paddingRight="30dp"
-        app:layout_constraintTop_toBottomOf="@id/filters_used"
+        android:paddingBottom="16dp"
+        android:text="Reset"
+        android:textColor="#DADADA"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="#DADADA"
-        android:backgroundTint="#202020" />
+        app:layout_constraintTop_toBottomOf="@id/filters_used" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

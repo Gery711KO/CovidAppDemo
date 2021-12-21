@@ -15,8 +15,8 @@ data class Filter(
         return list.filter {
             it.age > this.minAge ?: 0 &&
                     it.age < this.maxAge ?: 150 &&
-                    it.baseIllnesses.lowercase().contains(this.keyword?.lowercase() ?: "") &&
-                    it.sex.lowercase().contains(this.keyword?.lowercase() ?: "")
+                    (it.baseIllnesses.lowercase().contains(this.keyword?.lowercase() ?: "") ||
+                    it.sex.lowercase().contains(this.keyword?.lowercase() ?: ""))
         }
     }
 }

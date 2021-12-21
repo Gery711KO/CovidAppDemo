@@ -182,6 +182,8 @@
         android:id="@+id/viewRC"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:verticalScrollbarPosition="right"
         android:visibility="gone"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:visibility="visible" />
@@ -194,6 +196,23 @@
         android:layout_margin="16dp"
         android:contentDescription="Open Filters"
         android:src="@drawable/edit"
+        app:backgroundTint="#454545"
+        app:maxImageSize="30dp"
+        app:fabSize="auto"
+        app:tint="#DADADA"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/scrollToTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="80dp"
+        android:layout_marginRight="16dp"
+        android:contentDescription="Scroll to the top."
+        android:src="@drawable/scroll"
+        app:maxImageSize="30dp"
         app:backgroundTint="#454545"
         app:fabSize="auto"
         app:tint="#DADADA"/>

@@ -12,10 +12,14 @@ class WebScrapper {
 
         children?.map { element ->
             Person(
-                id = element.child(0).text().toInt(),
-                sex = element.child(1).text(),
-                age = element.child(2).text().toInt(),
-                baseIllnesses = element.child(3).text()
+                element.child(0).text().toInt(),
+                element.child(1).text().let{
+                    if (it.lowercase() != "férfi") {
+                        "Nő"
+                    }else "Férfi"
+                }.toString(),
+                element.child(2).text().toInt(),
+                element.child(3).text()
             )
         } ?: emptyList<Person>()
     }

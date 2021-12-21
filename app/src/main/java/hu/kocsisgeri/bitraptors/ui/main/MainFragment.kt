@@ -13,7 +13,14 @@ import hu.kocsisgeri.bitraptors.ui.adapter.DiffListAdapter
 import hu.kocsisgeri.bitraptors.ui.adapter.cell.cellPersonDelegate
 import hu.kocsisgeri.bitraptors.ui.decoration.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_main.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import android.util.DisplayMetrics
+
+import androidx.recyclerview.widget.LinearSmoothScroller
+
+
+
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
@@ -41,6 +48,10 @@ class MainFragment : Fragment() {
             FilterFragment.newInstance().show(childFragmentManager, FilterFragment::class.java.canonicalName)
         }
 
+        scrollToTop.setOnClickListener{
+            viewRC.scrollToPosition(0)
+        }
+
         viewModel.covids.observe(viewLifecycleOwner) {
             when (it) {
                 is ApiResult.Success -> {
@@ -48,7 +59,6 @@ class MainFragment : Fragment() {
                     viewRC.visibility = View.VISIBLE
                     progressBar.visibility = View.GONE
                     caseCount.text = it.data.size.toString()
-                    binding.viewRC.scrollToPosition(0)
                 }
                 is ApiResult.Progress -> {
                     progressBar.progress = it.percentage
