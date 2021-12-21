@@ -84,6 +84,8 @@ dependencies {
     implementation ("org.jsoup:jsoup:1.14.3")
     implementation ("androidx.work:work-runtime:2.7.0-alpha05")
     implementation ("com.android.support:design:29.0.0")
+    implementation ("androidx.fragment:fragment-ktx:1.3.2")
+    implementation("androidx.compose.material3:material3:1.0.0-alpha02")
     addDependency(Libraries.material)
     addDependency(Libraries.timber)
 

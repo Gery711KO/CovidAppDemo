@@ -159,4 +159,16 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:visibility="visible" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:contentDescription="Open Filters"
+        android:src="@drawable/edit"
+        app:backgroundTint="#454545"
+        app:fabSize="auto"
+        app:tint="#DADADA"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

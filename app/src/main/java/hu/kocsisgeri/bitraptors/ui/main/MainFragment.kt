@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import hu.kocsisgeri.bitraptors.data.repository.ApiResult
+import hu.kocsisgeri.bitraptors.databinding.FilterBinding
 import hu.kocsisgeri.bitraptors.databinding.FragmentMainBinding
 import hu.kocsisgeri.bitraptors.ui.adapter.BasicListAdapter
 import hu.kocsisgeri.bitraptors.ui.adapter.DiffListAdapter
@@ -37,13 +38,17 @@ class MainFragment : Fragment() {
             adapter = listAdapter
             addItemDecoration(decoration)
         }
+        fab.setOnClickListener{
+            FilterFragment.newInstance().show(childFragmentManager, FilterFragment::class.java.canonicalName)
+        }
+
         var text2 = ""
         var text3 = ""
 
         viewModel.covids.observe(viewLifecycleOwner) {
             when (it) {
                 is ApiResult.Success -> {
-                    listAdapter.updateData(it.data.sortedByDescending { x -> x.id })
+                    listAdapter.updateData(it.data)
                     viewRC.visibility = View.VISIBLE
                     progressBar.visibility = View.GONE
                 }

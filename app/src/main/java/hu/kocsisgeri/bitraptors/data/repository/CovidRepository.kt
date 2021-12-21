@@ -36,8 +36,8 @@ class CovidRepository(
                     emit(ApiResult.Progress(((index / lastPage) * 100).roundToInt()))
                     index++
                 }
-                emit(ApiResult.Success(dao.getData()))
-            } else emit(ApiResult.Success(cache))
+                emit(ApiResult.Success(dao.getData().subList(dao.getData().size-100, dao.getData().size).sortedByDescending { x -> x.id }))
+            } else emit(ApiResult.Success(cache.subList(cache.size-100, cache.size).sortedByDescending { x -> x.id }))
         }
     }
 
