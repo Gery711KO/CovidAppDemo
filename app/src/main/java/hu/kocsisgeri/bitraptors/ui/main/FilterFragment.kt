@@ -6,17 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import hu.kocsisgeri.bitraptors.databinding.FilterBinding
+import hu.kocsisgeri.bitraptors.databinding.FilterDialogBinding
 
 class FilterFragment : BottomSheetDialogFragment() {
     companion object {
         fun newInstance() = FilterFragment()
     }
 
-    lateinit var binding: FilterBinding
+    lateinit var binding: FilterDialogBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = FilterBinding.inflate(inflater, container, false)
+        binding = FilterDialogBinding.inflate(inflater, container, false)
         return binding.root
     }
 
