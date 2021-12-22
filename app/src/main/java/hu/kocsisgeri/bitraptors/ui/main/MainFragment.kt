@@ -18,8 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import android.util.DisplayMetrics
 
 import androidx.recyclerview.widget.LinearSmoothScroller
-
-
+import kotlinx.android.synthetic.main.cell_person.*
 
 
 class MainFragment : Fragment() {

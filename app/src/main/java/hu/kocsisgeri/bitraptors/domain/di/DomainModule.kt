@@ -39,5 +39,4 @@ val dataModule = module {
     single { provideDao(dataBase = get()) }
     single { WebScrapper() }
     single { CovidRepository(dao = get(), webScrape = get()) }
-    //single { MainViewModel(repo = get())}
 }

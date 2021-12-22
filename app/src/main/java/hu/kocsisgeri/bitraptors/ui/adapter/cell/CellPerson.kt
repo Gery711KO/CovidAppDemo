@@ -15,6 +15,7 @@ fun cellPersonDelegate() =
                 binding.pIdText.text = item.id.toString()
                 binding.pSexText.text = item.sex
                 binding.pAgeText.text = item.age.toString().plus(" éves")
+                binding.pIllnessText.text = item.baseIllnesses
             }
         }
     )

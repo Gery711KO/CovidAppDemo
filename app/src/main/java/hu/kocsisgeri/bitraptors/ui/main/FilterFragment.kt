@@ -45,14 +45,10 @@ class FilterFragment : BottomSheetDialogFragment() {
                 },
                 keyword.text.toString()
             )
-
-            binding.filtersUsed.text = "[minAge: ${age_min.text}] [maxAge: ${age_max.text}] [keyWord: ${keyword.text}]"
         }
 
         binding.clearButton.setOnClickListener {
             filterVM.clearButtonFunc()
-
-            binding.filtersUsed.text = ""
         }
         initDialog()
     }
