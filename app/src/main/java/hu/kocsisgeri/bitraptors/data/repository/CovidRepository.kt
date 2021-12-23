@@ -35,7 +35,7 @@ class CovidRepository(
                         if (web.any { x -> x.id > lastCacheId }
                             || web.any { x -> x.id < firstCacheId }) {
                             dao.insertAll(web)
-                        } else if ( firstCacheId != 1 ) {
+                        } else if (firstCacheId != 1) {
                             dao.insertAll(web)
                         } else break
 
@@ -43,14 +43,13 @@ class CovidRepository(
                         index++
                     }
                     emit(
-                        ApiResult.Success(dao.getData().sortedByDescending { x -> x.id })
+                        ApiResult.Success(dao.getData())
                     )
                 } else emit(
-                    ApiResult.Success(cache.sortedByDescending { x -> x.id })
+                    ApiResult.Success(cache)
                 )
             }
-        } catch (exception : Exception)
-        {
+        } catch (exception: Exception) {
             emit(ApiResult.Error(exception.message!!))
         }
     }.flatMapLatest { halottak ->
@@ -65,9 +64,7 @@ class CovidRepository(
         try {
             val vaccinatedNum = webScrape.getVaccinated()
             emit(ApiResult.Success(vaccinatedNum))
-        }
-        catch (exception: Exception)
-        {
+        } catch (exception: Exception) {
             emit(ApiResult.Error(exception.message!!))
         }
     }
@@ -76,9 +73,7 @@ class CovidRepository(
         try {
             val maxId = webScrape.getMaxId()
             emit(ApiResult.Success(maxId))
-        }
-        catch (exception : Exception)
-        {
+        } catch (exception: Exception) {
             emit(ApiResult.Error(exception.message!!))
         }
     }

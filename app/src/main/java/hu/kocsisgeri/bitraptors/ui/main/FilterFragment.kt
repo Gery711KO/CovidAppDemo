@@ -44,6 +44,7 @@ class FilterFragment : BottomSheetDialogFragment() {
                 },
                 binding.keyword.text.toString()
             )
+            this.dismiss()
         }
 
         binding.clearButton.setOnClickListener {
@@ -51,6 +52,7 @@ class FilterFragment : BottomSheetDialogFragment() {
             binding.ageMin.setText("")
             binding.ageMax.setText("")
             binding.keyword.setText("")
+            this.dismiss()
         }
         initDialog()
     }

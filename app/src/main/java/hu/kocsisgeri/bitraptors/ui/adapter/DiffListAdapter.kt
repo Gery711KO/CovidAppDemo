@@ -29,6 +29,7 @@ class DiffListAdapter(
     fun notifyItemUpdate(pos: Int) {
         notifyItemChanged(pos)
     }
+
     fun updateData(list: List<ListItem>) {
         items = list
     }
@@ -42,6 +43,7 @@ class DiffListAdapter(
                 ): Boolean {
                     return oldItem.getAdapterItemId() == newItem.getAdapterItemId()
                 }
+
                 @SuppressLint("DiffUtilEquals")
                 override fun areContentsTheSame(
                     oldItem: ListItem,

@@ -13,10 +13,10 @@ class WebScrapper {
         children?.map { element ->
             Person(
                 element.child(0).text().toInt(),
-                element.child(1).text().let{
+                element.child(1).text().let {
                     if (it.lowercase() != "férfi") {
                         "Nő"
-                    }else "Férfi"
+                    } else "Férfi"
                 }.toString(),
                 element.child(2).text().toInt(),
                 element.child(3).text()

@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.flatMap
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 
-class MainViewModel(repo : CovidRepository) : ViewModel() {
+class MainViewModel(repo: CovidRepository) : ViewModel() {
 
-    val covids = repo.getCovidList().flatMapLatest{ personList ->
+    /*val covids = repo.getCovidList().flatMapLatest{ personList ->
         selected.map { selected ->
             if (personList is ApiResult.Success) {
                 val asd = personList.data.map{
@@ -24,6 +24,18 @@ class MainViewModel(repo : CovidRepository) : ViewModel() {
                 ApiResult.Progress(personList.percentage)
             } else {
                 ApiResult.Error("Error")
+            }
+        }
+    }.asLiveData()*/
+
+    val covids = repo.getCovidList().flatMapLatest { personList ->
+        selected.map { selected ->
+            when (personList) {
+                is ApiResult.Error -> ApiResult.Error(personList.error)
+                is ApiResult.Progress -> ApiResult.Progress(personList.percentage)
+                is ApiResult.Success -> ApiResult.Success(personList.data.map {
+                    PersonUI(person = it, isOpened = it.id == selected)
+                })
             }
         }
     }.asLiveData()

@@ -4,19 +4,18 @@ import android.annotation.SuppressLint
 import android.view.View
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import hu.kocsisgeri.bitraptors.R
-import hu.kocsisgeri.bitraptors.data.dao.Person
 import hu.kocsisgeri.bitraptors.databinding.CellPersonBinding
 import hu.kocsisgeri.bitraptors.ui.adapter.ListItem
 import hu.kocsisgeri.bitraptors.ui.model.PersonUI
 
 @SuppressLint("UseCompatLoadingForDrawables")
-fun cellPersonDelegate(select: (Int)-> Unit) =
+fun cellPersonDelegate(select: (Int) -> Unit) =
     adapterDelegateViewBinding<PersonUI, ListItem, CellPersonBinding>(
         viewBinding = { layoutInflater, root ->
             CellPersonBinding.inflate(layoutInflater, root, false)
         },
         block = {
-            binding.root.setOnClickListener{
+            binding.root.setOnClickListener {
                 if (item.isOpened) {
                     select(0)
                 } else {
@@ -30,8 +29,10 @@ fun cellPersonDelegate(select: (Int)-> Unit) =
                     binding.pAgeText.background = context.getDrawable(R.drawable.rounded_right)
                 } else {
                     binding.pIllnessText.visibility = View.GONE
-                    binding.pIdText.background = context.getDrawable(R.drawable.rounded_left_up_down)
-                    binding.pAgeText.background = context.getDrawable(R.drawable.rounded_right_up_down)
+                    binding.pIdText.background =
+                        context.getDrawable(R.drawable.rounded_left_up_down)
+                    binding.pAgeText.background =
+                        context.getDrawable(R.drawable.rounded_right_up_down)
                 }
 
                 binding.pIdText.text = item.person.id.toString()

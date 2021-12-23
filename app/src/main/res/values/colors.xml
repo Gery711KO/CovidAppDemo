@@ -15,5 +15,6 @@
     <color name="purple">#673AB7</color>
     <color name="pink">#95006A</color>
     <color name="purpleAlpha15">#26673AB7</color>
-    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/filterBG</color>
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/filterBG
+    </color>
 </resources>

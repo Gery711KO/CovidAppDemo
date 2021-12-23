@@ -14,12 +14,11 @@ import hu.kocsisgeri.bitraptors.ui.decoration.ItemOffsetDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
 
     private val viewModel: MainViewModel by viewModel()
-    private val listAdapter = DiffListAdapter(cellPersonDelegate({viewModel.selected.tryEmit(it)}))
+    private val listAdapter = DiffListAdapter(cellPersonDelegate { viewModel.selected.tryEmit(it) })
     private val decoration = ItemOffsetDecoration()
     private val filter = FilterFragment()
 
@@ -40,11 +39,11 @@ class MainFragment : Fragment() {
             addItemDecoration(decoration)
         }
 
-        binding.fab.setOnClickListener{
+        binding.fab.setOnClickListener {
             filter.show(childFragmentManager, FilterFragment.TAG)
         }
 
-        binding.scrollToTop.setOnClickListener{
+        binding.scrollToTop.setOnClickListener {
             binding.viewRC.scrollToPosition(0)
         }
 
@@ -56,8 +55,9 @@ class MainFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                     binding.internetConnectionText.visibility = View.GONE
                     binding.caseCount.text = it.data.size.toString()
-                    if(childFragmentManager.fragments.size != 0 &&
-                        childFragmentManager.fragments.first() is FilterFragment) {
+                    if (childFragmentManager.fragments.size != 0 &&
+                        childFragmentManager.fragments.first() is FilterFragment
+                    ) {
                         (childFragmentManager.fragments.first() as FilterFragment).dismiss()
                     }
                 }
@@ -71,7 +71,7 @@ class MainFragment : Fragment() {
         }
 
         viewModel.vaccinated.observe(viewLifecycleOwner) {
-            when (it){
+            when (it) {
                 is ApiResult.Success -> {
                     binding.vaccinatedText.text = it.data
                     binding.progressCircle.visibility = View.GONE
@@ -85,7 +85,7 @@ class MainFragment : Fragment() {
 
         viewModel.maxId.observe(viewLifecycleOwner) {
 
-            when (it){
+            when (it) {
                 is ApiResult.Success -> {
                     binding.deadText.text = it.data
                     binding.progressCircle.visibility = View.GONE
