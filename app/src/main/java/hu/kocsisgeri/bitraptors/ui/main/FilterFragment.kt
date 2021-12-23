@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.fragment.app.DialogFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import hu.kocsisgeri.bitraptors.R
 import hu.kocsisgeri.bitraptors.databinding.FilterDialogBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -18,12 +20,18 @@ class FilterFragment : BottomSheetDialogFragment() {
     lateinit var binding: FilterDialogBinding
     private val filterVM: FilterViewModel by viewModel()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(DialogFragment.STYLE_NO_FRAME, R.style.CustomBottomSheetDialog)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FilterDialogBinding.inflate(inflater, container, false)
+        binding.root.background = context?.getDrawable(android.R.color.transparent)
         return binding.root
     }
 

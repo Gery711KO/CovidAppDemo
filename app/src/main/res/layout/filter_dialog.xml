@@ -1,226 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/filter"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
-    app:behavior_fitToContents="false"
-    app:behavior_hideable="false"
-    app:behavior_peekHeight="61dp"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
-
-    <View
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:alpha="1"
-        android:background="@color/personIdBackground"
-        app:layout_constraintBottom_toTopOf="@id/title_text"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/title_text"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#090909"
-        android:drawableLeft="@drawable/filter_button_icon"
-        android:drawablePadding="16dp"
-        android:drawableTint="#DADADA"
-        android:fontFamily="@font/armata"
-        android:gravity="center|start"
-        android:padding="16dp"
-        android:text="Filter"
-        android:textColor="#DADADA"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line" />
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#0F0F0F"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_text">
+        android:layout_height="match_parent"
+        app:behavior_fitToContents="false"
+        android:background="@android:color/transparent"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="61dp"
+        app:layout_behavior="@string/bottom_sheet_behavior">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/age_min_layout"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:hint="@string/minAge"
-            android:textColorHint="#A3A3A3"
-            app:boxCornerRadiusBottomEnd="20dp"
-            app:boxCornerRadiusBottomStart="20dp"
-            app:boxCornerRadiusTopEnd="20dp"
-            app:boxCornerRadiusTopStart="20dp"
-            app:boxStrokeColor="#000000"
-            app:boxStrokeWidth="30dp"
-            app:endIconMode="clear_text"
-            app:hintTextColor="#DADADA"
-            app:layout_constraintEnd_toStartOf="@id/toText"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/age_min"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/armata"
-                android:gravity="end"
-                android:inputType="numberDecimal"
-                android:padding="16dp"
-                android:textColor="#E8E8E8"
-                android:textCursorDrawable="@null" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/toText"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:text="-"
-            android:textColor="@color/filterBG"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@id/keyword_layout"
-            app:layout_constraintEnd_toStartOf="@id/age_max_layout"
-            app:layout_constraintStart_toEndOf="@id/age_min_layout"
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:alpha="1"
+            android:background="@drawable/top_shadow"
+            app:layout_constraintBottom_toTopOf="@id/title_text"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/age_max_layout"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:hint="@string/maxAge"
-            android:textColorHint="#A3A3A3"
-            app:boxCornerRadiusBottomEnd="20dp"
-            app:boxCornerRadiusBottomStart="20dp"
-            app:boxCornerRadiusTopEnd="20dp"
-            app:boxCornerRadiusTopStart="20dp"
-            app:boxStrokeColor="#000000"
-            app:boxStrokeWidth="30dp"
-            app:endIconMode="clear_text"
-            app:hintTextColor="#DADADA"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title_text"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#090909"
+            android:drawableLeft="@drawable/filter_button_icon"
+            android:drawablePadding="16dp"
+            android:drawableTint="#DADADA"
+            android:fontFamily="@font/armata"
+            android:gravity="center|start"
+            android:padding="16dp"
+            android:text="Filter"
+            android:textColor="#DADADA"
+            android:textSize="25sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/toText"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/age_max"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/armata"
-                android:inputType="numberDecimal"
-                android:padding="16dp"
-                android:textColor="#E8E8E8"
-                android:textCursorDrawable="@null" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/keyword_layout"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
-            android:hint="@string/keyWord"
-            android:textColorHint="#A3A3A3"
-            app:boxCornerRadiusBottomEnd="20dp"
-            app:boxCornerRadiusBottomStart="20dp"
-            app:boxCornerRadiusTopEnd="20dp"
-            app:boxCornerRadiusTopStart="20dp"
-            app:boxStrokeColor="#000000"
-            app:boxStrokeWidth="30dp"
-            app:endIconMode="clear_text"
-            app:hintTextColor="#DADADA"
+            android:background="#0F0F0F"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/age_min_layout">
+            app:layout_constraintTop_toBottomOf="@id/title_text">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/keyword"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/age_min_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:hint="@string/minAge"
+                android:textColorHint="#A3A3A3"
+                app:boxCornerRadiusBottomEnd="20dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusTopStart="20dp"
+                app:boxStrokeColor="#000000"
+                app:boxStrokeWidth="30dp"
+                app:endIconMode="clear_text"
+                app:hintTextColor="#DADADA"
+                app:layout_constraintEnd_toStartOf="@id/toText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/age_min"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/armata"
+                    android:gravity="end"
+                    android:inputType="numberDecimal"
+                    android:padding="16dp"
+                    android:textColor="#E8E8E8"
+                    android:textCursorDrawable="@null" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/toText"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="-"
+                android:textColor="@color/filterBG"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toTopOf="@id/keyword_layout"
+                app:layout_constraintEnd_toStartOf="@id/age_max_layout"
+                app:layout_constraintStart_toEndOf="@id/age_min_layout"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/age_max_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/maxAge"
+                android:textColorHint="#A3A3A3"
+                app:boxCornerRadiusBottomEnd="20dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusTopStart="20dp"
+                app:boxStrokeColor="#000000"
+                app:boxStrokeWidth="30dp"
+                app:endIconMode="clear_text"
+                app:hintTextColor="#DADADA"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/toText"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/age_max"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/armata"
+                    android:inputType="numberDecimal"
+                    android:padding="16dp"
+                    android:textColor="#E8E8E8"
+                    android:textCursorDrawable="@null" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/keyword_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:hint="@string/keyWord"
+                android:textColorHint="#A3A3A3"
+                app:boxCornerRadiusBottomEnd="20dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusTopStart="20dp"
+                app:boxStrokeColor="#000000"
+                app:boxStrokeWidth="30dp"
+                app:endIconMode="clear_text"
+                app:hintTextColor="#DADADA"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/age_min_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/keyword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/armata"
+                    android:gravity="center"
+                    android:inputType="text"
+                    android:padding="16dp"
+                    android:textColor="#E8E8E8"
+                    android:textCursorDrawable="@null" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/filter_button"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="#090909"
+                android:drawableLeft="@drawable/filter_button_icon"
+                android:drawablePadding="1dp"
+                android:drawableTint="#DADADA"
                 android:fontFamily="@font/armata"
-                android:gravity="center"
-                android:inputType="text"
-                android:padding="16dp"
-                android:textColor="#E8E8E8"
-                android:textCursorDrawable="@null" />
+                android:paddingLeft="30dp"
+                android:paddingTop="16dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="16dp"
+                android:text="@string/filter"
+                android:textColor="#DADADA"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:cornerRadius="28dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/clear_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/keyword_layout"
+                app:rippleColor="#5A5A5A" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:id="@+id/clear_button"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="#090909"
+                android:drawableRight="@drawable/reset_button_icon"
+                android:drawablePadding="1dp"
+                android:drawableTint="#DADADA"
+                android:fontFamily="@font/armata"
+                android:paddingLeft="30dp"
+                android:paddingTop="16dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="16dp"
+                android:text="@string/reset"
+                android:textColor="#DADADA"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:cornerRadius="28dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/filter_button"
+                app:layout_constraintTop_toBottomOf="@id/keyword_layout"
+                app:rippleColor="#5A5A5A" />
 
-
-        <Button
-            android:id="@+id/filter_button"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="#090909"
-            android:drawableLeft="@drawable/filter_button_icon"
-            android:drawablePadding="1dp"
-            android:drawableTint="#DADADA"
-            android:fontFamily="@font/armata"
-            android:paddingLeft="30dp"
-            android:paddingTop="16dp"
-            android:paddingRight="30dp"
-            android:paddingBottom="16dp"
-            android:text="@string/filter"
-            android:textColor="#DADADA"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:cornerRadius="28dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/clear_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/keyword_layout"
-            app:rippleColor="#5A5A5A" />
-
-        <Button
-            android:id="@+id/clear_button"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="#090909"
-            android:drawableRight="@drawable/reset_button_icon"
-            android:drawablePadding="1dp"
-            android:drawableTint="#DADADA"
-            android:fontFamily="@font/armata"
-            android:paddingLeft="30dp"
-            android:paddingTop="16dp"
-            android:paddingRight="30dp"
-            android:paddingBottom="16dp"
-            android:text="@string/reset"
-            android:textColor="#DADADA"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:cornerRadius="28dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/filter_button"
-            app:layout_constraintTop_toBottomOf="@id/keyword_layout"
-            app:rippleColor="#5A5A5A" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
