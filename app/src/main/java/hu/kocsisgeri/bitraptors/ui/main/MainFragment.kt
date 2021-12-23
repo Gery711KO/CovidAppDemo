@@ -63,7 +63,7 @@ class MainFragment : Fragment() {
                     listAdapter.updateData(it.data)
                     binding.downloadingLayout.visibility = View.GONE
                     binding.progressBar.visibility = View.GONE
-                    binding.internetConnectionText.visibility = View.GONE
+                    //binding.internetConnectionText.visibility = View.GONE
                     binding.viewRC.visibility = View.VISIBLE
                     binding.caseCount.visibility = View.VISIBLE
                     binding.caseCount.text = it.data.size.toString()
@@ -88,12 +88,14 @@ class MainFragment : Fragment() {
                 is ApiResult.Success -> {
                     binding.vaccinatedText.text = it.data
                     binding.progressCircle.visibility = View.GONE
+                    binding.internetConnectionText.visibility = View.GONE
                     binding.vaccinatedLayout.visibility = View.VISIBLE
                     binding.swipeToRefresh.isRefreshing = false
                 }
                 is ApiResult.Error -> {
                     binding.internetConnectionText.visibility = View.VISIBLE
                     binding.progressCircle.visibility = View.GONE
+                    binding.vaccinatedLayout.visibility = View.GONE
                     binding.swipeToRefresh.isRefreshing = false
                 }
             }
@@ -105,12 +107,14 @@ class MainFragment : Fragment() {
                 is ApiResult.Success -> {
                     binding.deadText.text = it.data
                     binding.progressCircle.visibility = View.GONE
+                    binding.internetConnectionText.visibility = View.GONE
                     binding.deadLayout.visibility = View.VISIBLE
                     binding.swipeToRefresh.isRefreshing = false
                 }
                 is ApiResult.Error -> {
                     binding.internetConnectionText.visibility = View.VISIBLE
                     binding.progressCircle.visibility = View.GONE
+                    binding.deadLayout.visibility = View.GONE
                     binding.swipeToRefresh.isRefreshing = false
                 }
             }

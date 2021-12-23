@@ -33,7 +33,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="230dp"
                 android:orientation="horizontal">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -152,14 +152,18 @@
                 android:id="@+id/internetConnectionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|bottom"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="30dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:background="@color/personIdBackground"
+                android:drawableLeft="@drawable/resized_warning"
+                android:drawablePadding="16dp"
+                android:drawableTint="#DADADA"
                 android:fontFamily="@font/armata"
-                android:text="Nincs internetkapcsolat!"
-                android:textAlignment="textEnd"
-                android:textColor="#FF2424"
-                android:textSize="12dp"
+                android:padding="20dp"
+                android:text="@string/noInternet"
+                android:textAllCaps="false"
+                android:textColor="#DADADA"
+                android:textSize="22sp"
                 android:textStyle="bold"
                 android:visibility="gone" />
 
