@@ -20,6 +20,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:collapsedTitleGravity="center_vertical"
             app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Large"
             app:collapsedTitleTextColor="#DADADA"
             app:contentScrim="@color/purple_700"
@@ -70,16 +71,20 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="24dp"
                         android:layout_marginRight="20dp"
+                        android:drawingCacheQuality="high"
                         android:fontFamily="@font/armata"
-                        android:gravity="right|center_vertical"
-                        android:padding="16dp"
-                        android:text="beoltott"
+                        android:gravity="end|center_vertical"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingRight="20dp"
                         android:textColor="#DADADA"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:drawableRightCompat="@drawable/resized_vaccinated"
+                        app:drawableTint="#838383" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -118,16 +123,21 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
                         android:fontFamily="@font/armata"
-                        android:gravity="right|center_vertical"
-                        android:padding="16dp"
-                        android:text="elhunyt"
+                        android:drawingCacheQuality="high"
+                        android:gravity="end|center_vertical"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingRight="20dp"
                         android:textColor="#DADADA"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:drawableRightCompat="@drawable/resized_dead"
+                        app:drawableTint="#838383" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -170,16 +180,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|bottom"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/armata"
                 android:textAlignment="textEnd"
                 android:textColor="#787878"
-                android:textSize="12dp"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 android:visibility="visible"
-                tools:text="30123" />
+                tools:text="30123"
+                app:drawableTint="#787878"
+                app:drawableRightCompat="@drawable/list_counter"
+                android:drawablePadding="4dp"
+                android:drawingCacheQuality="high" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
