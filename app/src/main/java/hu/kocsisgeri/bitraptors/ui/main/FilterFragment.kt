@@ -5,6 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.FrameLayout
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import hu.kocsisgeri.bitraptors.databinding.FilterDialogBinding
 import kotlinx.android.synthetic.main.filter_dialog.*
@@ -13,6 +17,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class FilterFragment : BottomSheetDialogFragment() {
     companion object {
         fun newInstance() = FilterFragment()
+        const val TAG = "FilterBottomSheet"
     }
 
     lateinit var binding: FilterDialogBinding
@@ -24,7 +29,6 @@ class FilterFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FilterDialogBinding.inflate(inflater, container, false)
-        //getDialog()?.getWindow()?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         return binding.root
     }
 
@@ -49,6 +53,9 @@ class FilterFragment : BottomSheetDialogFragment() {
 
         binding.clearButton.setOnClickListener {
             filterVM.clearButtonFunc()
+            age_min.setText("")
+            age_max.setText("")
+            keyword.setText("")
         }
         initDialog()
     }

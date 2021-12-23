@@ -20,14 +20,17 @@
         <item name="android:navigationBarColor">@color/black</item>
     </style>
 
-    <style name="TextLabel" parent="TextAppearance.Design.Hint">
-        <item name="android:textSize">16sp</item>
+
+    <style name="ModalBottomSheet" parent="Widget.Material3.BottomSheet.Modal">
+        <!-- Apply attributes here -->
     </style>
 
-    <style name="DialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowSoftInputMode">adjustResize</item>
+    <style name="ModalBottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/ModalBottomSheet</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.Material3.DayNight.BottomSheetDialog">
+        <item name="bottomSheetDialogTheme">@style/ModalBottomSheetDialog</item>
     </style>
 
 </resources>

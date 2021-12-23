@@ -8,10 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="personCellBackground">#333333</color>
-    <color name="personIdBackground">#292929</color>
+    <color name="personIdBackground">#1C1C1C</color>
+    <color name="filterBG">#4E4E4E</color>
 
     <color name="textColorHighlight">#4DD81B60</color>
     <color name="purple">#673AB7</color>
+    <color name="pink">#95006A</color>
     <color name="purpleAlpha15">#26673AB7</color>
-    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/personCellBackground</color>
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/filterBG</color>
 </resources>

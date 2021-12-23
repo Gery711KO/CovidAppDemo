@@ -10,7 +10,7 @@ data class Person(
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "person_sex") var sex: String,
     @ColumnInfo(name = "person_age") var age: Int,
-    @ColumnInfo(name = "person_baseIllness") var baseIllnesses: String) : ListItem{
+    @ColumnInfo(name = "person_baseIllness") var baseIllnesses: String) {
 
     override fun toString(): String {
         return "$id - [$sex] - $age years old\n"

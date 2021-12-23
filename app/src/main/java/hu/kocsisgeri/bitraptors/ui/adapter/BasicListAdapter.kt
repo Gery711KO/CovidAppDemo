@@ -7,6 +7,7 @@ import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import hu.kocsisgeri.bitraptors.data.dao.Person
 import hu.kocsisgeri.bitraptors.data.repository.ApiResult
+//import hu.kocsisgeri.bitraptors.ui.model.PersonUI
 import timber.log.Timber
 
 open class BasicListAdapter(
@@ -20,7 +21,7 @@ open class BasicListAdapter(
         items = emptyList()
     }
 
-    fun updateData(list: List<Person>) {
+    fun updateData(list: List<ListItem>) {
         items = list
         try {
             notifyDataSetChanged()

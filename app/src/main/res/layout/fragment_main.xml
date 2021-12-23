@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1B1B1B"
+    android:background="#0E0E0E"
     android:visibility="visible"
     tools:context=".ui.main.MainFragment"
     tools:visibility="visible">
@@ -14,7 +14,8 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.Material3.Dark">
+        android:theme="@style/ThemeOverlay.Material3.Dark"
+        android:background="@drawable/rounded_bottom">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -35,6 +36,7 @@
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     tools:visibility="visible">
 
                     <TextView
@@ -42,8 +44,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
                         android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
                         android:background="@drawable/vaccinated_border"
                         android:fontFamily="@font/armata"
                         android:gravity="center|left"
@@ -51,6 +53,7 @@
                         android:textColor="#4CA150"
                         android:textSize="24sp"
                         android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="6 000 000" />
@@ -69,7 +72,8 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -78,7 +82,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
-                    app:layout_constraintStart_toStartOf="@+id/vaccinatedLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/vaccinatedLayout"
                     tools:visibility="visible">
 
@@ -91,6 +96,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginLeft="20dp"
                         android:background="@drawable/vaccinated_border"
+                        android:fontFamily="@font/armata"
                         android:gravity="center|left"
                         android:padding="16dp"
                         android:textColor="#F44336"
@@ -98,6 +104,7 @@
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         tools:text="40 000" />
 
                     <TextView
@@ -105,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:layout_marginRight="20dp"
-                        android:layout_marginLeft="20dp"
+                        android:fontFamily="@font/armata"
                         android:gravity="right|center_vertical"
                         android:padding="16dp"
                         android:text="elhunyt"
@@ -113,7 +120,8 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -142,11 +150,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|bottom"
                 android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"
-                android:text="Nincs internet kapcsolat!"
+                android:layout_marginRight="70dp"
+                android:fontFamily="@font/armata"
+                android:text="Nincs internetkapcsolat!"
                 android:textAlignment="textEnd"
                 android:textColor="#FF2424"
                 android:textSize="12dp"
+                android:textStyle="bold"
                 android:visibility="gone" />
 
             <TextView
@@ -157,11 +167,13 @@
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="5dp"
-                tools:text="30123"
+                android:fontFamily="@font/armata"
                 android:textAlignment="textEnd"
                 android:textColor="#DADADA"
                 android:textSize="12dp"
-                android:visibility="visible" />
+                android:textStyle="bold"
+                android:visibility="visible"
+                tools:text="30123" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -196,7 +208,7 @@
         android:layout_margin="16dp"
         android:contentDescription="Open Filters"
         android:src="@drawable/edit"
-        app:backgroundTint="#454545"
+        app:backgroundTint="@color/purple_700"
         app:maxImageSize="30dp"
         app:fabSize="auto"
         app:tint="#DADADA"/>
@@ -213,7 +225,7 @@
         android:contentDescription="Scroll to the top."
         android:src="@drawable/scroll"
         app:maxImageSize="30dp"
-        app:backgroundTint="#454545"
+        app:backgroundTint="@color/purple_700"
         app:fabSize="auto"
         app:tint="#DADADA"/>
 

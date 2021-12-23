@@ -21,12 +21,12 @@ class CovidRepository(
         try {
             var index = 0
             val isMaxFound =
-                dao.getData().maxOfOrNull { x -> x.id } ?: 0 != webScrape.getMaxId()?.toInt()
-            val isMinFound = dao.getData().minOfOrNull { x -> x.id } ?: 0 != 1
+                dao.getData().maxOfOrNull { x -> x.id } ?: 0 == webScrape.getMaxId()?.toInt()
+            val isMinFound = dao.getData().minOfOrNull { x -> x.id } ?: 0 == 1
             val lastPage = webScrape.getLastPage().toDouble()
 
             dao.getData().let { cache ->
-                if (isMinFound && isMaxFound) {
+                if (!isMinFound || !isMaxFound) {
                     val firstCacheId = dao.getData().minByOrNull { y -> y.id }?.id ?: 0
                     val lastCacheId = dao.getData().maxByOrNull { x -> x.id }?.id ?: 0
                     while (index <= lastPage) {

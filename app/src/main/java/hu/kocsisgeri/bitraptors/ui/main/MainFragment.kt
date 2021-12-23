@@ -16,8 +16,11 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import android.util.DisplayMetrics
+import androidx.core.view.get
 
 import androidx.recyclerview.widget.LinearSmoothScroller
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.cell_person.*
 
 
@@ -25,8 +28,9 @@ class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
 
     private val viewModel: MainViewModel by viewModel()
-    private val listAdapter = DiffListAdapter(cellPersonDelegate())
+    private val listAdapter = DiffListAdapter(cellPersonDelegate({viewModel.selected.tryEmit(it)}))
     private val decoration = ItemOffsetDecoration()
+    private val filter = FilterFragment()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,13 +42,16 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.viewRC.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = listAdapter
             addItemDecoration(decoration)
         }
+
         fab.setOnClickListener{
-            FilterFragment.newInstance().show(childFragmentManager, FilterFragment::class.java.canonicalName)
+            filter.show(childFragmentManager, FilterFragment.TAG)
+            /*FilterFragment.newInstance().show(childFragmentManager, FilterFragment.TAG)*/
         }
 
         scrollToTop.setOnClickListener{
@@ -58,6 +65,10 @@ class MainFragment : Fragment() {
                     viewRC.visibility = View.VISIBLE
                     progressBar.visibility = View.GONE
                     caseCount.text = it.data.size.toString()
+                    if(childFragmentManager.fragments.size != 0 &&
+                        childFragmentManager.fragments.first() is FilterFragment) {
+                        (childFragmentManager.fragments.first() as FilterFragment).dismiss()
+                    }
                 }
                 is ApiResult.Progress -> {
                     progressBar.progress = it.percentage
