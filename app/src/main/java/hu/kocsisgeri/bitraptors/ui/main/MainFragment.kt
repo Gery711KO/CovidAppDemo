@@ -7,21 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import hu.kocsisgeri.bitraptors.data.repository.ApiResult
-import hu.kocsisgeri.bitraptors.databinding.FilterDialogBinding
 import hu.kocsisgeri.bitraptors.databinding.FragmentMainBinding
 import hu.kocsisgeri.bitraptors.ui.adapter.DiffListAdapter
 import hu.kocsisgeri.bitraptors.ui.adapter.cell.cellPersonDelegate
 import hu.kocsisgeri.bitraptors.ui.decoration.ItemOffsetDecoration
-import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.fragment_main.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import android.util.DisplayMetrics
-import androidx.core.view.get
 
-import androidx.recyclerview.widget.LinearSmoothScroller
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.android.synthetic.main.cell_person.*
 
 
 class MainFragment : Fragment() {
@@ -49,32 +40,32 @@ class MainFragment : Fragment() {
             addItemDecoration(decoration)
         }
 
-        fab.setOnClickListener{
+        binding.fab.setOnClickListener{
             filter.show(childFragmentManager, FilterFragment.TAG)
-            /*FilterFragment.newInstance().show(childFragmentManager, FilterFragment.TAG)*/
         }
 
-        scrollToTop.setOnClickListener{
-            viewRC.scrollToPosition(0)
+        binding.scrollToTop.setOnClickListener{
+            binding.viewRC.scrollToPosition(0)
         }
 
         viewModel.covids.observe(viewLifecycleOwner) {
             when (it) {
                 is ApiResult.Success -> {
                     listAdapter.updateData(it.data)
-                    viewRC.visibility = View.VISIBLE
-                    progressBar.visibility = View.GONE
-                    caseCount.text = it.data.size.toString()
+                    binding.viewRC.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                    binding.internetConnectionText.visibility = View.GONE
+                    binding.caseCount.text = it.data.size.toString()
                     if(childFragmentManager.fragments.size != 0 &&
                         childFragmentManager.fragments.first() is FilterFragment) {
                         (childFragmentManager.fragments.first() as FilterFragment).dismiss()
                     }
                 }
                 is ApiResult.Progress -> {
-                    progressBar.progress = it.percentage
+                    binding.progressBar.progress = it.percentage
                 }
                 is ApiResult.Error -> {
-                    internetConnectionText.visibility = View.VISIBLE
+                    binding.internetConnectionText.visibility = View.VISIBLE
                 }
             }
         }
@@ -82,12 +73,12 @@ class MainFragment : Fragment() {
         viewModel.vaccinated.observe(viewLifecycleOwner) {
             when (it){
                 is ApiResult.Success -> {
-                    vaccinated_text.text = it.data
-                    progressCircle.visibility = View.GONE
-                    vaccinatedLayout.visibility = View.VISIBLE
+                    binding.vaccinatedText.text = it.data
+                    binding.progressCircle.visibility = View.GONE
+                    binding.vaccinatedLayout.visibility = View.VISIBLE
                 }
                 is ApiResult.Error -> {
-                    internetConnectionText.visibility = View.VISIBLE
+                    binding.internetConnectionText.visibility = View.VISIBLE
                 }
             }
         }
@@ -96,12 +87,12 @@ class MainFragment : Fragment() {
 
             when (it){
                 is ApiResult.Success -> {
-                    dead_text.text = it.data
-                    progressCircle.visibility = View.GONE
-                    deadLayout.visibility = View.VISIBLE
+                    binding.deadText.text = it.data
+                    binding.progressCircle.visibility = View.GONE
+                    binding.deadLayout.visibility = View.VISIBLE
                 }
                 is ApiResult.Error -> {
-                    internetConnectionText.visibility = View.VISIBLE
+                    binding.internetConnectionText.visibility = View.VISIBLE
                 }
             }
         }

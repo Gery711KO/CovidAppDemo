@@ -32,9 +32,10 @@ class CovidRepository(
                     while (index <= lastPage) {
                         val web = webScrape.getDataFromWeb(index)
 
-                        if (web.any { x -> x.id > firstCacheId }) {
+                        if (web.any { x -> x.id > lastCacheId }
+                            || web.any { x -> x.id < firstCacheId }) {
                             dao.insertAll(web)
-                        } else if (web.any { x -> x.id > lastCacheId }) {
+                        } else if ( firstCacheId != 1 ) {
                             dao.insertAll(web)
                         } else break
 

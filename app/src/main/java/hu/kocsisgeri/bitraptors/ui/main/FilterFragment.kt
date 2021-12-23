@@ -5,13 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.FrameLayout
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import hu.kocsisgeri.bitraptors.databinding.FilterDialogBinding
-import kotlinx.android.synthetic.main.filter_dialog.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FilterFragment : BottomSheetDialogFragment() {
@@ -37,25 +32,25 @@ class FilterFragment : BottomSheetDialogFragment() {
 
         binding.filterButton.setOnClickListener {
             filterVM.filterButtonFunc(
-                age_min.text.toString().let {
+                binding.ageMin.text.toString().let {
                     if (it.isNotEmpty()) {
                         it.toInt()
                     } else 0
                 },
-                age_max.text.toString().let {
+                binding.ageMax.text.toString().let {
                     if (it.isNotEmpty()) {
                         it.toInt()
                     } else 150
                 },
-                keyword.text.toString()
+                binding.keyword.text.toString()
             )
         }
 
         binding.clearButton.setOnClickListener {
             filterVM.clearButtonFunc()
-            age_min.setText("")
-            age_max.setText("")
-            keyword.setText("")
+            binding.ageMin.setText("")
+            binding.ageMax.setText("")
+            binding.keyword.setText("")
         }
         initDialog()
     }
