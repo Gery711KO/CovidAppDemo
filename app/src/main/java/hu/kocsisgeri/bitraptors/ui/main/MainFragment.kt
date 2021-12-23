@@ -78,6 +78,7 @@ class MainFragment : Fragment() {
                 is ApiResult.Error -> {
                     binding.downloadingLayout.visibility = View.GONE
                     binding.internetConnectionText.visibility = View.VISIBLE
+                    binding.swipeToRefresh.isRefreshing = false
                 }
             }
         }
@@ -88,10 +89,12 @@ class MainFragment : Fragment() {
                     binding.vaccinatedText.text = it.data
                     binding.progressCircle.visibility = View.GONE
                     binding.vaccinatedLayout.visibility = View.VISIBLE
+                    binding.swipeToRefresh.isRefreshing = false
                 }
                 is ApiResult.Error -> {
                     binding.internetConnectionText.visibility = View.VISIBLE
                     binding.progressCircle.visibility = View.GONE
+                    binding.swipeToRefresh.isRefreshing = false
                 }
             }
         }
@@ -103,11 +106,12 @@ class MainFragment : Fragment() {
                     binding.deadText.text = it.data
                     binding.progressCircle.visibility = View.GONE
                     binding.deadLayout.visibility = View.VISIBLE
+                    binding.swipeToRefresh.isRefreshing = false
                 }
                 is ApiResult.Error -> {
                     binding.internetConnectionText.visibility = View.VISIBLE
                     binding.progressCircle.visibility = View.GONE
-                    viewModel.maxId
+                    binding.swipeToRefresh.isRefreshing = false
                 }
             }
         }
@@ -116,6 +120,5 @@ class MainFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.refreshFunc()
-        binding.viewRC.scrollToPosition(0)
     }
 }
