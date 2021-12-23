@@ -55,11 +55,6 @@ class MainFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                     binding.internetConnectionText.visibility = View.GONE
                     binding.caseCount.text = it.data.size.toString()
-                    if (childFragmentManager.fragments.size != 0 &&
-                        childFragmentManager.fragments.first() is FilterFragment
-                    ) {
-                        (childFragmentManager.fragments.first() as FilterFragment).dismiss()
-                    }
                 }
                 is ApiResult.Progress -> {
                     binding.progressBar.progress = it.percentage
