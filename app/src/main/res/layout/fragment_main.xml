@@ -148,24 +148,51 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin" />
 
-            <TextView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/internetConnectionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textAlignment="center"
-                android:background="@color/personIdBackground"
-                android:drawableLeft="@drawable/resized_warning"
-                android:drawablePadding="16dp"
-                android:drawableTint="#DADADA"
-                android:fontFamily="@font/armata"
-                android:padding="20dp"
-                android:text="@string/noInternet"
-                android:textAllCaps="false"
-                android:textColor="#DADADA"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
+                android:background="@drawable/rounded_corner"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/armata"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:padding="16dp"
+                    android:text="@string/noInternet"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="#E6CF8B"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/warning_icon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/warning_icon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingLeft="24dp"
+                    app:tint="#E6CF8B"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/resized_warning" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/caseCount"
