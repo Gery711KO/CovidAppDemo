@@ -7,6 +7,7 @@ import hu.kocsisgeri.bitraptors.data.logic.WebScrapper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.SharingStarted.Companion.Eagerly
 import kotlin.coroutines.CoroutineContext
 import kotlin.math.roundToInt
 
@@ -16,8 +17,9 @@ class CovidRepository(
     private val webScrape: WebScrapper,
 ) : CoroutineScope {
     val filter = MutableStateFlow<Filter>(Filter(null, null, null))
+    val refresh = MutableSharedFlow<Unit>(0, 100)
 
-    fun getCovidList(): Flow<ApiResult<List<Person>>> = flow {
+    fun getCovidList(): Flow<ApiResult<List<Person>>> = refresh.flatMapLatest { flow {
         try {
             var index = 0
             val isMaxFound =
@@ -58,23 +60,23 @@ class CovidRepository(
                 halottak.copy(it.getFilteredList(halottak.data.sortedByDescending { x -> x.id }))
             } else halottak
         }
-    }
+    } }
 
-    fun getCovidVaccinated(): Flow<ApiResult<String>> = flow {
+    fun getCovidVaccinated(): Flow<ApiResult<String>> = refresh.flatMapLatest { flow {
         try {
             val vaccinatedNum = webScrape.getVaccinated()
             emit(ApiResult.Success(vaccinatedNum))
         } catch (exception: Exception) {
             emit(ApiResult.Error(exception.message!!))
         }
-    }
+    }}
 
-    fun getCovidMaxId(): Flow<ApiResult<String>> = flow {
+    fun getCovidMaxId(): Flow<ApiResult<String>> = refresh.flatMapLatest { flow {
         try {
             val maxId = webScrape.getMaxId()
             emit(ApiResult.Success(maxId))
         } catch (exception: Exception) {
             emit(ApiResult.Error(exception.message!!))
         }
-    }
+    }}
 }

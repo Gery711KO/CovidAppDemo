@@ -1,5 +1,6 @@
 package hu.kocsisgeri.bitraptors.ui.main
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,13 +36,18 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.swipeToRefresh.setProgressBackgroundColorSchemeColor(Color.rgb(14,14,14))
+        binding.swipeToRefresh.setColorSchemeColors(Color.rgb(218,218,218))
+
         binding.viewRC.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = listAdapter
             addItemDecoration(decoration)
         }
 
-        //binding.viewRC.change
+        binding.swipeToRefresh.setOnRefreshListener {
+            viewModel.refreshFunc()
+        }
 
         binding.fab.setOnClickListener {
             filter.show(childFragmentManager, FilterFragment.TAG)
@@ -61,6 +67,7 @@ class MainFragment : Fragment() {
                     binding.viewRC.visibility = View.VISIBLE
                     binding.caseCount.visibility = View.VISIBLE
                     binding.caseCount.text = it.data.size.toString()
+                    binding.swipeToRefresh.isRefreshing = false
                 }
                 is ApiResult.Progress -> {
                     binding.viewRC.visibility = View.GONE
@@ -84,6 +91,7 @@ class MainFragment : Fragment() {
                 }
                 is ApiResult.Error -> {
                     binding.internetConnectionText.visibility = View.VISIBLE
+                    binding.progressCircle.visibility = View.GONE
                 }
             }
         }
@@ -98,8 +106,16 @@ class MainFragment : Fragment() {
                 }
                 is ApiResult.Error -> {
                     binding.internetConnectionText.visibility = View.VISIBLE
+                    binding.progressCircle.visibility = View.GONE
+                    viewModel.maxId
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.refreshFunc()
+        binding.viewRC.scrollToPosition(0)
     }
 }

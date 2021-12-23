@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|bottom"
                 android:layout_marginLeft="60dp"
-                android:layout_marginRight="70dp"
+                android:layout_marginRight="30dp"
                 android:fontFamily="@font/armata"
                 android:text="Nincs internetkapcsolat!"
                 android:textAlignment="textEnd"
@@ -210,7 +210,7 @@
                 android:fontFamily="@font/armata"
                 android:gravity="center_horizontal"
                 android:padding="16dp"
-                android:text="Downloading data..."
+                android:text="Scraping data..."
                 android:textAllCaps="false"
                 android:textColor="#DADADA"
                 android:textSize="20sp"
@@ -238,14 +238,23 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/viewRC"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeToRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        android:verticalScrollbarPosition="right"
-        android:visibility="gone"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:swipeRefreshLayoutProgressSpinnerBackgroundColor="@color/personIdBackground">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/viewRC"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:verticalScrollbarPosition="right"
+            android:visibility="gone" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

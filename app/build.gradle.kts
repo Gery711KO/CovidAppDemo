@@ -86,6 +86,7 @@ dependencies {
     implementation("com.android.support:design:29.0.0")
     implementation("androidx.fragment:fragment-ktx:1.3.2")
     implementation("androidx.compose.material3:material3:1.0.0-alpha02")
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     addDependency(Libraries.material)
     addDependency(Libraries.timber)
 
