@@ -175,7 +175,7 @@
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/armata"
                 android:textAlignment="textEnd"
-                android:textColor="#DADADA"
+                android:textColor="#787878"
                 android:textSize="12dp"
                 android:textStyle="bold"
                 android:visibility="visible"
