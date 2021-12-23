@@ -11,7 +11,9 @@ import hu.kocsisgeri.bitraptors.databinding.FragmentMainBinding
 import hu.kocsisgeri.bitraptors.ui.adapter.DiffListAdapter
 import hu.kocsisgeri.bitraptors.ui.adapter.cell.cellPersonDelegate
 import hu.kocsisgeri.bitraptors.ui.decoration.ItemOffsetDecoration
+import okhttp3.internal.wait
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.concurrent.thread
 
 
 class MainFragment : Fragment() {
@@ -39,6 +41,8 @@ class MainFragment : Fragment() {
             addItemDecoration(decoration)
         }
 
+        //binding.viewRC.change
+
         binding.fab.setOnClickListener {
             filter.show(childFragmentManager, FilterFragment.TAG)
         }
@@ -51,15 +55,21 @@ class MainFragment : Fragment() {
             when (it) {
                 is ApiResult.Success -> {
                     listAdapter.updateData(it.data)
-                    binding.viewRC.visibility = View.VISIBLE
+                    binding.downloadingLayout.visibility = View.GONE
                     binding.progressBar.visibility = View.GONE
                     binding.internetConnectionText.visibility = View.GONE
+                    binding.viewRC.visibility = View.VISIBLE
+                    binding.caseCount.visibility = View.VISIBLE
                     binding.caseCount.text = it.data.size.toString()
                 }
                 is ApiResult.Progress -> {
+                    binding.viewRC.visibility = View.GONE
+                    binding.caseCount.visibility = View.GONE
+                    binding.progressBar.visibility = View.VISIBLE
                     binding.progressBar.progress = it.percentage
                 }
                 is ApiResult.Error -> {
+                    binding.downloadingLayout.visibility = View.GONE
                     binding.internetConnectionText.visibility = View.VISIBLE
                 }
             }

@@ -66,25 +66,19 @@
                         tools:text="6 000 000" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginRight="20dp"
                         android:drawingCacheQuality="high"
                         android:fontFamily="@font/armata"
                         android:gravity="end|center_vertical"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:paddingRight="20dp"
+                        android:padding="16dp"
                         android:textColor="#DADADA"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:drawableRightCompat="@drawable/resized_vaccinated"
-                        app:drawableTint="#838383" />
+                        app:drawableTint="#838383"
+                        app:layout_constraintEnd_toEndOf="@id/vaccinatedText"
+                        app:layout_constraintTop_toTopOf="@id/vaccinatedText" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -101,7 +95,7 @@
 
                     <TextView
                         android:id="@+id/deadText"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="20dp"
@@ -119,25 +113,19 @@
                         tools:text="40 000" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="20dp"
-                        android:fontFamily="@font/armata"
                         android:drawingCacheQuality="high"
+                        android:fontFamily="@font/armata"
                         android:gravity="end|center_vertical"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:paddingRight="20dp"
+                        android:padding="16dp"
                         android:textColor="#DADADA"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:drawableRightCompat="@drawable/resized_dead"
-                        app:drawableTint="#838383" />
+                        app:drawableTint="#838383"
+                        app:layout_constraintEnd_toEndOf="@id/deadText"
+                        app:layout_constraintTop_toTopOf="@id/deadText" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -183,17 +171,17 @@
                 android:layout_marginStart="60dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:drawablePadding="4dp"
+                android:drawingCacheQuality="high"
                 android:fontFamily="@font/armata"
                 android:textAlignment="textEnd"
                 android:textColor="#787878"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:visibility="visible"
-                tools:text="30123"
-                app:drawableTint="#787878"
+                android:visibility="gone"
                 app:drawableRightCompat="@drawable/list_counter"
-                android:drawablePadding="4dp"
-                android:drawingCacheQuality="high" />
+                app:drawableTint="#787878"
+                tools:text="30123" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -208,7 +196,47 @@
             app:indicatorColor="#FFFFFF"
             tools:visibility="visible" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/downloadingLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            android:background="#0E0E0E">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/downloading"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/armata"
+                android:gravity="center_horizontal"
+                android:padding="16dp"
+                android:text="Downloading data..."
+                android:textAllCaps="false"
+                android:textColor="#DADADA"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/progressCircle2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <!-- Circular progress indicator-->
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progressCircle2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:padding="16dp"
+                app:indicatorColor="#FFFFFF"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </com.google.android.material.appbar.AppBarLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/viewRC"
@@ -217,8 +245,7 @@
         android:scrollbars="vertical"
         android:verticalScrollbarPosition="right"
         android:visibility="gone"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:visibility="visible" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
