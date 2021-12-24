@@ -7,15 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import hu.kocsisgeri.bitraptors.R
 import hu.kocsisgeri.bitraptors.data.repository.ApiResult
 import hu.kocsisgeri.bitraptors.databinding.FragmentMainBinding
 import hu.kocsisgeri.bitraptors.ui.adapter.DiffListAdapter
 import hu.kocsisgeri.bitraptors.ui.adapter.cell.cellPersonDelegate
 import hu.kocsisgeri.bitraptors.ui.decoration.ItemOffsetDecoration
-import okhttp3.internal.wait
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import kotlin.concurrent.thread
 
 
 class MainFragment : Fragment() {
@@ -125,6 +122,9 @@ class MainFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.refreshFunc()
+
+        if (binding.progressBar.progress == binding.progressBar.max || binding.progressBar.progress == 0) {
+            viewModel.refreshFunc()
+        }
     }
 }
