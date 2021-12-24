@@ -22,11 +22,11 @@
             android:layout_height="wrap_content"
             app:collapsedTitleGravity="center_vertical"
             app:collapsedTitleTextAppearance="@style/CollapsedCovidTitleText"
-            app:collapsedTitleTextColor="#BABABA"
+            app:collapsedTitleTextColor="@color/titleColor"
             app:contentScrim="@color/fullDarkColor"
             app:expandedTitleGravity="bottom"
             app:expandedTitleTextAppearance="@style/ExpandedCovidTitleText"
-            app:expandedTitleTextColor="#BABABA"
+            app:expandedTitleTextColor="@color/titleColor"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
             app:title="@string/app_name"
             app:titleCollapseMode="scale">
@@ -253,23 +253,44 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="visible"
-            android:background="@color/mainFragmentBackgroundColor">
+            android:background="@drawable/rounded_bottom">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/downloading"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:fontFamily="@font/armata"
                 android:gravity="center_horizontal"
-                android:padding="16dp"
-                android:text="Scraping data..."
+                android:layout_marginTop="5dp"
+                android:paddingTop="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="Adatok betöltése..."
                 android:textAllCaps="false"
-                android:textColor="@color/mainTextColor"
-                android:textSize="20sp"
+                android:textColor="@color/titleColor"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/progressCircle2"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/downloadSource"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/downloadSource"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/armata"
+                android:gravity="center_horizontal"
+                android:paddingBottom="10dp"
+                android:paddingTop="2dp"
+                android:text="https://koronavirus.gov.hu/"
+                android:textAllCaps="false"
+                android:textColor="@color/mainTextColor"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/progressCircle2"
+                app:layout_constraintTop_toBottomOf="@id/downloading"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
             <!-- Circular progress indicator-->
@@ -319,7 +340,7 @@
         app:backgroundTint="@color/fullDarkColor"
         app:fabSize="auto"
         app:maxImageSize="30dp"
-        app:tint="@color/mainTextColor" />
+        app:tint="@color/titleColor" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/scrollToTop"
@@ -335,6 +356,6 @@
         app:backgroundTint="@color/fullDarkColor"
         app:fabSize="auto"
         app:maxImageSize="30dp"
-        app:tint="@color/mainTextColor" />
+        app:tint="@color/titleColor" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

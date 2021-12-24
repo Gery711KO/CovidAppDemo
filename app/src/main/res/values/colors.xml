@@ -8,6 +8,7 @@
     <color name="mediumDarkColor">#1C1C1C</color>
     <color name="fullDarkColor">#121212</color>
     <color name="mainTextColor">#9A9A9A</color>
+    <color name="titleColor">#BABABA</color>
 
     <!-- Main fragment colors -->
     <color name="mainFragmentBackgroundColor">#090909</color>

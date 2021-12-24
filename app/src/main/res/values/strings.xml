@@ -1,11 +1,10 @@
 <resources>
     <string name="app_name">CovidApp</string>
     <string name="kor">Kor:</string>
-    <string name="keyword">Kulcsszó:</string>
-    <string name="minAge">MinAge</string>
-    <string name="maxAge">MaxAge</string>
-    <string name="keyWord">Keyword</string>
-    <string name="filter">Filter</string>
-    <string name="reset">Reset</string>
+    <string name="minAge">minKor</string>
+    <string name="maxAge">maxKor</string>
+    <string name="keyWord">nem/betegség</string>
+    <string name="filter">Szűrés</string>
+    <string name="reset">Újra</string>
     <string name="noInternet">Nincs internetkapcsolat!</string>
 </resources>

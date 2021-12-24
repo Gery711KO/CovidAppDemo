@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import hu.kocsisgeri.bitraptors.R
 import hu.kocsisgeri.bitraptors.data.repository.ApiResult
 import hu.kocsisgeri.bitraptors.databinding.FragmentMainBinding
 import hu.kocsisgeri.bitraptors.ui.adapter.DiffListAdapter
@@ -65,7 +66,6 @@ class MainFragment : Fragment() {
                     listAdapter.updateData(it.data)
                     binding.downloadingLayout.visibility = View.GONE
                     binding.progressBar.visibility = View.GONE
-                    //binding.internetConnectionText.visibility = View.GONE
                     binding.viewRC.visibility = View.VISIBLE
                     binding.caseCount.visibility = View.VISIBLE
                     binding.caseCount.text = it.data.size.toString()
