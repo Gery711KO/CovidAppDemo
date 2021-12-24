@@ -285,7 +285,7 @@
                 android:paddingTop="2dp"
                 android:text="https://koronavirus.gov.hu/"
                 android:textAllCaps="false"
-                android:textColor="@color/mainTextColor"
+                android:textColor="#939393"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
