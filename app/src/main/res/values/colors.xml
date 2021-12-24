@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="purple_200">#202020</color>
-    <color name="purple_500">#1C1C1C</color>
-    <color name="purple_700">#121212</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="personCellBackground">#333333</color>
-    <color name="personIdBackground">#1C1C1C</color>
-    <color name="filterBG">#4E4E4E</color>
 
-    <color name="textColorHighlight">#4DD81B60</color>
-    <color name="purple">#673AB7</color>
-    <color name="pink">#95006A</color>
-    <color name="purpleAlpha15">#26673AB7</color>
-    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#141414</color>
+    <!-- App primary colors -->
+    <color name="lightDarkColor">#202020</color>
+    <color name="mediumDarkColor">#1C1C1C</color>
+    <color name="fullDarkColor">#121212</color>
+    <color name="mainTextColor">#9A9A9A</color>
+
+    <!-- Main fragment colors -->
+    <color name="mainFragmentBackgroundColor">#090909</color>
+    <color name="vaccinatedTextColor">#4CA150</color>
+    <color name="collapseIconColor">#838383</color>
+    <color name="deadTextColor">#F44336</color>
+    <color name="progressBarCircleColor">#FFFFFF</color>
+    <color name="warningColor">#E6CF8B</color>
+    <color name="caseCounterColor">#787878</color>
+
+    <!-- Person cell colors -->
+    <color name="personIllnessBackgroundColor">#333333</color>
+    <color name="personCellBackgroundColor">@color/mediumDarkColor</color>
+    <color name="cellSexColor">#8894D6</color>
+
+    <!-- Filter fragment colors -->
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/mediumDarkColor</color>
+    <color name="agesBetweenColor">@color/lightDarkColor</color>
+    <color name="filterMainColor">@color/fullDarkColor</color>
+    <color name="filterBackgroundColor">@color/mainFragmentBackgroundColor</color>
+    <color name="textBoxHintColor">#A3A3A3</color>
+    <color name="textBoxInputColor">#E8E8E8</color>
+    <color name="buttonPressedColor">#5A5A5A</color>
+    <color name="textBoxSelected">#303030</color>
 </resources>

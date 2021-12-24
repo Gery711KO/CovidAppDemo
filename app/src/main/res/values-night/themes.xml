@@ -2,12 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.BitraptorsTest" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/lightDarkColor</item>
+        <item name="colorPrimaryVariant">@color/fullDarkColor</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/purple_200</item>
-        <item name="colorSecondaryVariant">@color/purple_700</item>
+        <item name="colorSecondary">@color/lightDarkColor</item>
+        <item name="colorSecondaryVariant">@color/fullDarkColor</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
@@ -34,6 +34,25 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">100dp</item>
         <item name="cornerSizeTopLeft">100dp</item>
+    </style>
+
+    <style name="CollapsedCovidTitleText" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/armata</item>
+        <item name="android:textStyle">bold</item>
+        app:expandedTitleTextColor="#BABABA"
+    </style>
+
+    <style name="ExpandedCovidTitleText" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">@font/armata</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CellTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/mainTextColor</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

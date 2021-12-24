@@ -7,7 +7,8 @@
     android:layout_marginLeft="2dp"
     android:layout_marginTop="5dp"
     android:layout_marginRight="2dp"
-    android:clickable="true">
+    android:clickable="true"
+    android:focusable="true">
 
 
     <TextView
@@ -20,8 +21,8 @@
         android:lineSpacingExtra="4sp"
         android:padding="16dp"
         android:textAllCaps="false"
-        android:textColor="#DADADA"
-        android:textSize="12dp"
+        android:textColor="@color/mainTextColor"
+        android:textSize="12sp"
         android:textStyle="italic"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,9 +38,7 @@
         android:fontFamily="@font/armata"
         android:gravity="center"
         android:padding="16dp"
-        android:textColor="#DADADA"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:textAppearance="@style/CellTextAppearance"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="34321" />
@@ -48,11 +47,11 @@
         android:id="@+id/pSex_text"
         android:layout_width="0dp"
         android:layout_height="55dp"
-        android:background="@color/personIdBackground"
+        android:background="@color/personCellBackgroundColor"
         android:fontFamily="@font/armata"
         android:gravity="start|center"
         android:padding="16dp"
-        android:textColor="#8894D6"
+        android:textColor="@color/cellSexColor"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/pAge_text"
@@ -68,9 +67,7 @@
         android:fontFamily="@font/armata"
         android:gravity="center"
         android:padding="16dp"
-        android:textColor="#DADADA"
-        android:textSize="15dp"
-        android:textStyle="bold"
+        android:textAppearance="@style/CellTextAppearance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="102 éves" />

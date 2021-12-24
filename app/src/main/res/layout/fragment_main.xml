@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0E0E0E"
+    android:background="@color/mainFragmentBackgroundColor"
     android:visibility="visible"
     tools:context=".ui.main.MainFragment"
     tools:visibility="visible">
@@ -21,12 +21,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:collapsedTitleGravity="center_vertical"
-            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Large"
-            app:collapsedTitleTextColor="#DADADA"
-            app:contentScrim="@color/purple_700"
+            app:collapsedTitleTextAppearance="@style/CollapsedCovidTitleText"
+            app:collapsedTitleTextColor="#BABABA"
+            app:contentScrim="@color/fullDarkColor"
             app:expandedTitleGravity="bottom"
-            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Display1"
-            app:expandedTitleTextColor="#DADADA"
+            app:expandedTitleTextAppearance="@style/ExpandedCovidTitleText"
+            app:expandedTitleTextColor="#BABABA"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
             app:title="@string/app_name"
             app:titleCollapseMode="scale">
@@ -57,7 +57,7 @@
                         android:fontFamily="@font/armata"
                         android:gravity="center|left"
                         android:padding="16dp"
-                        android:textColor="#4CA150"
+                        android:textColor="@color/vaccinatedTextColor"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -72,11 +72,11 @@
                         android:fontFamily="@font/armata"
                         android:gravity="end|center_vertical"
                         android:padding="16dp"
-                        android:textColor="#DADADA"
+                        android:textColor="@color/mainTextColor"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:drawableRightCompat="@drawable/resized_vaccinated"
-                        app:drawableTint="#838383"
+                        app:drawableTint="@color/collapseIconColor"
                         app:layout_constraintEnd_toEndOf="@id/vaccinatedText"
                         app:layout_constraintTop_toTopOf="@id/vaccinatedText" />
 
@@ -106,7 +106,7 @@
                         android:fontFamily="@font/armata"
                         android:gravity="center|left"
                         android:padding="16dp"
-                        android:textColor="#F44336"
+                        android:textColor="@color/deadTextColor"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -121,11 +121,11 @@
                         android:fontFamily="@font/armata"
                         android:gravity="end|center_vertical"
                         android:padding="16dp"
-                        android:textColor="#DADADA"
+                        android:textColor="@color/mainTextColor"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         app:drawableRightCompat="@drawable/resized_dead"
-                        app:drawableTint="#838383"
+                        app:drawableTint="@color/collapseIconColor"
                         app:layout_constraintEnd_toEndOf="@id/deadText"
                         app:layout_constraintTop_toTopOf="@id/deadText" />
 
@@ -138,7 +138,7 @@
                     android:layout_height="wrap_content"
                     android:indeterminate="true"
                     android:visibility="visible"
-                    app:indicatorColor="#FFFFFF"
+                    app:indicatorColor="@color/progressBarCircleColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -161,7 +161,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="54dp"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/warning_icon"
@@ -170,7 +170,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:paddingLeft="24dp"
-                    app:tint="#E6CF8B"
+                    app:tint="@color/warningColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -184,11 +184,11 @@
                     android:fontFamily="@font/armata"
                     android:paddingTop="16dp"
                     android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
+                    android:paddingRight="24dp"
                     android:text="@string/noInternet"
                     android:textAlignment="center"
                     android:textAllCaps="false"
-                    android:textColor="#E6CF8B"
+                    android:textColor="@color/warningColor"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/warning_icon"
@@ -200,11 +200,12 @@
                     android:id="@+id/swipe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#DADADA"
+                    android:textColor="@color/mainTextColor"
                     android:text="A frissítéshez húzza le az ujját a képernyőn."
+                    android:textSize="12dp"
                     android:layout_marginStart="56dp"
                     android:paddingBottom="16dp"
-                    android:paddingRight="10dp"
+                    android:paddingRight="24dp"
                     android:paddingLeft="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -226,12 +227,12 @@
                 android:drawingCacheQuality="high"
                 android:fontFamily="@font/armata"
                 android:textAlignment="textEnd"
-                android:textColor="#787878"
+                android:textColor="@color/caseCounterColor"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:visibility="gone"
                 app:drawableRightCompat="@drawable/list_counter"
-                app:drawableTint="#787878"
+                app:drawableTint="@color/caseCounterColor"
                 tools:text="30123" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -244,7 +245,7 @@
             android:indeterminate="false"
             android:max="100"
             android:visibility="visible"
-            app:indicatorColor="#FFFFFF"
+            app:indicatorColor="@color/progressBarCircleColor"
             tools:visibility="visible" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -252,7 +253,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="visible"
-            android:background="#0E0E0E">
+            android:background="@color/mainFragmentBackgroundColor">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/downloading"
@@ -263,7 +264,7 @@
                 android:padding="16dp"
                 android:text="Scraping data..."
                 android:textAllCaps="false"
-                android:textColor="#DADADA"
+                android:textColor="@color/mainTextColor"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -279,7 +280,7 @@
                 android:layout_gravity="center"
                 android:indeterminate="true"
                 android:padding="16dp"
-                app:indicatorColor="#FFFFFF"
+                app:indicatorColor="@color/progressBarCircleColor"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
@@ -294,7 +295,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:swipeRefreshLayoutProgressSpinnerBackgroundColor="@color/personIdBackground">
+        app:swipeRefreshLayoutProgressSpinnerBackgroundColor="@color/personCellBackgroundColor">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/viewRC"
@@ -315,10 +316,10 @@
         android:layout_margin="16dp"
         android:contentDescription="Open Filters"
         android:src="@drawable/edit"
-        app:backgroundTint="@color/purple_700"
+        app:backgroundTint="@color/fullDarkColor"
         app:fabSize="auto"
         app:maxImageSize="30dp"
-        app:tint="#DADADA" />
+        app:tint="@color/mainTextColor" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/scrollToTop"
@@ -331,9 +332,9 @@
         android:layout_marginBottom="80dp"
         android:contentDescription="Scroll to the top."
         android:src="@drawable/scroll"
-        app:backgroundTint="@color/purple_700"
+        app:backgroundTint="@color/fullDarkColor"
         app:fabSize="auto"
         app:maxImageSize="30dp"
-        app:tint="#DADADA" />
+        app:tint="@color/mainTextColor" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
