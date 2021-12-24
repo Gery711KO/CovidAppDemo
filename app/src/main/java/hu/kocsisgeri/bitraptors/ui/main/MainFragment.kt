@@ -50,7 +50,9 @@ class MainFragment : Fragment() {
         }
 
         binding.fab.setOnClickListener {
-            filter.show(childFragmentManager, FilterFragment.TAG)
+            if (childFragmentManager.fragments.size == 0) {
+                filter.show(childFragmentManager, FilterFragment.TAG)
+            }
         }
 
         binding.scrollToTop.setOnClickListener {

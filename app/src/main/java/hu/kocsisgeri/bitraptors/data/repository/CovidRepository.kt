@@ -21,17 +21,18 @@ class CovidRepository(
 
     fun getCovidList(): Flow<ApiResult<List<Person>>> = refresh.flatMapLatest {
         flow {
-            try {
-                var index = 0
-                val isMaxFound =
-                    dao.getData().maxOfOrNull { x -> x.id } ?: 0 == webScrape.getMaxId()?.toInt()
-                val isMinFound = dao.getData().minOfOrNull { x -> x.id } ?: 0 == 1
-                val lastPage = webScrape.getLastPage().toDouble()
+            dao.getData().let { cache ->
+                try {
+                    var index = 0
+                    val isMaxFound =
+                        cache.maxOfOrNull { x -> x.id } ?: 0 == webScrape.getMaxId()
+                            ?.toInt()
+                    val isMinFound = cache.minOfOrNull { x -> x.id } ?: 0 == 1
+                    val lastPage = webScrape.getLastPage().toDouble()
 
-                dao.getData().let { cache ->
                     if (!isMinFound || !isMaxFound) {
-                        val firstCacheId = dao.getData().minByOrNull { y -> y.id }?.id ?: 0
-                        val lastCacheId = dao.getData().maxByOrNull { x -> x.id }?.id ?: 0
+                        val firstCacheId = cache.minByOrNull { y -> y.id }?.id ?: 0
+                        val lastCacheId = cache.maxByOrNull { x -> x.id }?.id ?: 0
                         while (index <= lastPage) {
                             val web = webScrape.getDataFromWeb(index)
 
@@ -51,12 +52,12 @@ class CovidRepository(
                     } else emit(
                         ApiResult.Success(cache)
                     )
-                }
-            } catch (exception: Exception) {
-                emit(ApiResult.Error(exception.message!!))
-            } finally {
-                if (dao.getData().isNotEmpty()) {
-                    emit(ApiResult.Success(dao.getData()))
+                } catch (exception: Exception) {
+                    emit(ApiResult.Error(exception.message?: "Error"))
+                } finally {
+                    if (cache.isNotEmpty()) {
+                        emit(ApiResult.Success(cache))
+                    }
                 }
             }
         }.flatMapLatest { halottak ->
@@ -74,7 +75,7 @@ class CovidRepository(
                 val vaccinatedNum = webScrape.getVaccinated()
                 emit(ApiResult.Success(vaccinatedNum))
             } catch (exception: Exception) {
-                emit(ApiResult.Error(exception.message!!))
+                emit(ApiResult.Error(exception.message?: "Error"))
             }
         }
     }
@@ -85,7 +86,7 @@ class CovidRepository(
                 val maxId = webScrape.getMaxId()
                 emit(ApiResult.Success(maxId))
             } catch (exception: Exception) {
-                emit(ApiResult.Error(exception.message!!))
+                emit(ApiResult.Error(exception.message?: "Error"))
             }
         }
     }
