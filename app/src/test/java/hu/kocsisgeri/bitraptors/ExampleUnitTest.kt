@@ -49,7 +49,7 @@ class FilterUnitTest {
             Person(5, "nő", 18, "cukor, parkinson"),
         )
         assertNotNull(filtered)
-        assertEquals(expected, filtered)
+        assertEquals(expected, filtered )
     }
 
     @Test
