@@ -91,9 +91,6 @@ dependencies {
     implementation("androidx.compose.material3:material3:1.0.0-alpha02")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
-    //runtimeOnly("com.linkedin.dexmaker:dexmaker:2.21.0")
-
-    addDependency("com.linkedin.dexmaker:dexmaker-mockito-inline-extended:2.28.0", DependencyConfig.AndroidTest)
 
     addDependency(Libraries.material)
     addDependency(Libraries.timber)

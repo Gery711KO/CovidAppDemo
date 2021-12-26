@@ -16,6 +16,7 @@ buildscript {
         classpath(BuildPlugins.firebaseCrashlytics)
         classpath(BuildPlugins.firebasePerformance)
         classpath(BuildPlugins.firebaseTools)
+        classpath("com.linkedin.dexmaker:dexmaker:2.21.0")
     }
 }
 allprojects {
