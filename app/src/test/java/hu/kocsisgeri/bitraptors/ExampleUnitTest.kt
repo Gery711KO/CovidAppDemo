@@ -59,7 +59,7 @@ class FilterUnitTest {
         val expected = listOf<Person>(
             Person(1, "nő", 11, "cukor, daganat"),
             Person(5, "nő", 18, "cukor, parkinson"),
-            Person(8, "nő", 19, "daganat" ),
+            Person(8, "nő", 19, "daganat"),
         )
         assertNotNull(filtered)
         assertEquals(filtered, filtered)
