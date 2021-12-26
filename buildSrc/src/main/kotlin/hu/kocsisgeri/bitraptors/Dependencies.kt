@@ -37,6 +37,7 @@ object BuildPlugins {
     const val googleServicesPlugin = "com.google.gms.google-services"
     const val firebaseCrashlyticsPlugin = "com.google.firebase.crashlytics"
     const val firebasePerformancePlugin = "com.google.firebase.firebase-perf"
+    const val firebaseAppDistributionPlugin = "com.google.firebase.appdistribution"
     const val kotlinAndroidExtensionsPlugin = "kotlin-android-extensions"
     const val kotlinAndroidKaptPlugin = "kotlin-kapt"
     const val safeArgsPlugin = "androidx.navigation.safeargs.kotlin"

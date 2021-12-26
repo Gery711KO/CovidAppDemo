@@ -7,6 +7,7 @@ plugins {
     id(BuildPlugins.kotlinAndroidExtensionsPlugin)
     id(BuildPlugins.kotlinAndroidKaptPlugin)
     id(BuildPlugins.safeArgsPlugin)
+    id(BuildPlugins.firebaseAppDistributionPlugin)
 }
 
 android {
