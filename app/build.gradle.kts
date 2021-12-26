@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("com.google.gms.google-services")
     id(BuildPlugins.kotlinAndroidPlugin)
     id(BuildPlugins.kotlinAndroidExtensionsPlugin)
     id(BuildPlugins.kotlinAndroidKaptPlugin)

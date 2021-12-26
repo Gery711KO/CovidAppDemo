@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "336701500325",
+    "project_id": "covidappdemo",
+    "storage_bucket": "covidappdemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336701500325:android:79ecf463dfda091e2f964c",
+        "android_client_info": {
+          "package_name": "hu.kocsisgeri.bitraptors"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336701500325-3huck2emq2kr5q4h0j95ihi3869t46vk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTRVI0uX4bJxyZZ2jhDyMJ7MueHQKCs0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "336701500325-3huck2emq2kr5q4h0j95ihi3869t46vk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

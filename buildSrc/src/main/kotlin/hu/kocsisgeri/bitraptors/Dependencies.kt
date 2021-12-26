@@ -55,7 +55,7 @@ object Firebase {
     private object Versions {
         // cannot upgrade bom to newer until this is fixed:
         // https://youtrack.jetbrains.com/issue/KT-44375
-        const val bom = "28.4.2"
+        const val bom = "29.0.3"
         const val invites = "17.0.0"
     }
 
