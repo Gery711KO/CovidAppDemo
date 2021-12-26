@@ -34,8 +34,8 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.swipeToRefresh.setProgressBackgroundColorSchemeColor(Color.rgb(14,14,14))
-        binding.swipeToRefresh.setColorSchemeColors(Color.rgb(218,218,218))
+        binding.swipeToRefresh.setProgressBackgroundColorSchemeColor(Color.rgb(14, 14, 14))
+        binding.swipeToRefresh.setColorSchemeColors(Color.rgb(218, 218, 218))
 
         binding.viewRC.apply {
             layoutManager = LinearLayoutManager(context)

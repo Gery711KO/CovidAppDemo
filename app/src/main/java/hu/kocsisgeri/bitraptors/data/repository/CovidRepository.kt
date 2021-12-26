@@ -53,7 +53,7 @@ class CovidRepository(
                         ApiResult.Success(cache)
                     )
                 } catch (exception: Exception) {
-                    emit(ApiResult.Error(exception.message?: "Error"))
+                    emit(ApiResult.Error(exception.message ?: "Error"))
                 } finally {
                     if (cache.isNotEmpty()) {
                         emit(ApiResult.Success(cache))
@@ -75,7 +75,7 @@ class CovidRepository(
                 val vaccinatedNum = webScrape.getVaccinated()
                 emit(ApiResult.Success(vaccinatedNum))
             } catch (exception: Exception) {
-                emit(ApiResult.Error(exception.message?: "Error"))
+                emit(ApiResult.Error(exception.message ?: "Error"))
             }
         }
     }
@@ -86,7 +86,7 @@ class CovidRepository(
                 val maxId = webScrape.getMaxId()
                 emit(ApiResult.Success(maxId))
             } catch (exception: Exception) {
-                emit(ApiResult.Error(exception.message?: "Error"))
+                emit(ApiResult.Error(exception.message ?: "Error"))
             }
         }
     }
