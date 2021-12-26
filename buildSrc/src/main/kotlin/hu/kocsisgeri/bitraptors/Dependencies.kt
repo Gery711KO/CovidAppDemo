@@ -19,16 +19,19 @@ object BuildPlugins {
     object Versions {
         const val buildToolsVersion = "7.0.4"
         const val googleServicesVersion = "4.3.10"
+        const val firebaseVersion = "2.8.1"
     }
 
     const val androidBuildTools = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
     const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     const val googleServices = "com.google.gms:google-services:${Versions.googleServicesVersion}"
+    const val firebaseServices = "com.google.firebase:firebase-crashlytics-gradle:${Versions.firebaseVersion}"
     const val safeArgsGradle =
         "androidx.navigation:navigation-safe-args-gradle-plugin:${CommonVersions.navigation}"
 
     const val kotlinAndroidPlugin = "kotlin-android"
     const val googleServicesPlugin = "com.google.gms.google-services"
+    const val googleServicesCrashlyticsPlugin = "com.google.firebase.crashlytics"
     const val kotlinAndroidExtensionsPlugin = "kotlin-android-extensions"
     const val kotlinAndroidKaptPlugin = "kotlin-kapt"
     const val safeArgsPlugin = "androidx.navigation.safeargs.kotlin"

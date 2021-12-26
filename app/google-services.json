@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "336701500325",
-    "project_id": "covidappdemo",
-    "storage_bucket": "covidappdemo.appspot.com"
+    "project_number": "733950443581",
+    "project_id": "covidapphun",
+    "storage_bucket": "covidapphun.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:336701500325:android:79ecf463dfda091e2f964c",
+        "mobilesdk_app_id": "1:733950443581:android:0a8a35f0368d2537502a54",
         "android_client_info": {
           "package_name": "hu.kocsisgeri.bitraptors"
         }
       },
       "oauth_client": [
         {
-          "client_id": "336701500325-3huck2emq2kr5q4h0j95ihi3869t46vk.apps.googleusercontent.com",
+          "client_id": "733950443581-u2eccaf7evn7dj7ndb1moh8gubadg29e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hu.kocsisgeri.bitraptors",
+            "certificate_hash": "3ab085c5ee261683a0f5517641c1ee3083338ade"
+          }
+        },
+        {
+          "client_id": "733950443581-gfhm0dppcv5rdtntrpu892ura19f65us.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBTRVI0uX4bJxyZZ2jhDyMJ7MueHQKCs0U"
+          "current_key": "AIzaSyC8W4bEJetK_Z6bx3MBqq9PMy4P1aCHKgI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "336701500325-3huck2emq2kr5q4h0j95ihi3869t46vk.apps.googleusercontent.com",
+              "client_id": "733950443581-gfhm0dppcv5rdtntrpu892ura19f65us.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -34,6 +34,8 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //throw RuntimeException("Test Crash") // Force a crash
+
         binding.swipeToRefresh.setProgressBackgroundColorSchemeColor(Color.rgb(14, 14, 14))
         binding.swipeToRefresh.setColorSchemeColors(Color.rgb(218, 218, 218))
 

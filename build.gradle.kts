@@ -12,7 +12,8 @@ buildscript {
         classpath(BuildPlugins.androidBuildTools)
         classpath(BuildPlugins.kotlinGradle)
         classpath(BuildPlugins.safeArgsGradle)
-        classpath("com.google.gms:google-services:4.3.10")
+        classpath(BuildPlugins.googleServices)
+        classpath(BuildPlugins.firebaseServices)
     }
 }
 allprojects {
