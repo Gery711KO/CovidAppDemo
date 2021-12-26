@@ -25,7 +25,9 @@
     <color name="cellSexColor">#8894D6</color>
 
     <!-- Filter fragment colors -->
-    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/mediumDarkColor</color>
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">
+        @color/mediumDarkColor
+    </color>
     <color name="agesBetweenColor">@color/lightDarkColor</color>
     <color name="filterMainColor">@color/fullDarkColor</color>
     <color name="filterBackgroundColor">@color/mainFragmentBackgroundColor</color>
