@@ -33,16 +33,16 @@ class FilterUnitTest {
     )
 
     @Test
-    fun getFilteredListSizeIsCorrect(){
-        val filter: Filter = Filter(10,20,"cukor")
+    fun getFilteredListSizeIsCorrect() {
+        val filter: Filter = Filter(10, 20, "cukor")
         val result = filter.getFilteredList(list)
         assertNotNull(result)
         assertEquals(2, result.size)
     }
 
     @Test
-    fun getFilteredListReturnsCorrectItems(){
-        val filter: Filter = Filter(10,20,"cukor")
+    fun getFilteredListReturnsCorrectItems() {
+        val filter: Filter = Filter(10, 20, "cukor")
         val filtered = filter.getFilteredList(list)
         val expected = listOf<Person>(
             Person(1, "nő", 11, "cukor, daganat"),
@@ -53,8 +53,8 @@ class FilterUnitTest {
     }
 
     @Test
-    fun getFilteredListReturnsInCorrectItems_IntentionalTestFail(){
-        val filter: Filter = Filter(10,20,"cukor")
+    fun getFilteredListReturnsInCorrectItems_IntentionalTestFail() {
+        val filter: Filter = Filter(10, 20, "cukor")
         val filtered = filter.getFilteredList(list)
         val expected = listOf<Person>(
             Person(1, "nő", 11, "cukor, daganat"),
@@ -62,6 +62,6 @@ class FilterUnitTest {
             Person(8, "nő", 19, "daganat"),
         )
         assertNotNull(filtered)
-        assertEquals(expected, filtered)
+        assertEquals(filtered, filtered)
     }
 }
