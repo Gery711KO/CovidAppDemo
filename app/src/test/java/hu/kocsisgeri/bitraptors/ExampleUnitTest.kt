@@ -41,12 +41,25 @@ class FilterUnitTest {
     }
 
     @Test
-    fun getFilteredListSizeReturnsCorrectItems(){
+    fun getFilteredListReturnsCorrectItems(){
         val filter: Filter = Filter(10,20,"cukor")
         val filtered = filter.getFilteredList(list)
         val expected = listOf<Person>(
             Person(1, "nő", 11, "cukor, daganat"),
             Person(5, "nő", 18, "cukor, parkinson"),
+        )
+        assertNotNull(filtered)
+        assertEquals(expected, filtered)
+    }
+
+    @Test
+    fun getFilteredListReturnsInCorrectItems_IntentionalTestFail(){
+        val filter: Filter = Filter(10,20,"cukor")
+        val filtered = filter.getFilteredList(list)
+        val expected = listOf<Person>(
+            Person(1, "nő", 11, "cukor, daganat"),
+            Person(5, "nő", 18, "cukor, parkinson"),
+            Person(8, "nő", 19, "daganat"),
         )
         assertNotNull(filtered)
         assertEquals(expected, filtered)
