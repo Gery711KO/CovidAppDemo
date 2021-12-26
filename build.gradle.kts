@@ -13,7 +13,9 @@ buildscript {
         classpath(BuildPlugins.kotlinGradle)
         classpath(BuildPlugins.safeArgsGradle)
         classpath(BuildPlugins.googleServices)
-        classpath(BuildPlugins.firebaseServices)
+        classpath(BuildPlugins.firebaseCrashlytics)
+        classpath(BuildPlugins.firebasePerformance)
+        classpath(BuildPlugins.firebaseTools)
     }
 }
 allprojects {

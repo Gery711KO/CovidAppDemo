@@ -19,19 +19,24 @@ object BuildPlugins {
     object Versions {
         const val buildToolsVersion = "7.0.4"
         const val googleServicesVersion = "4.3.10"
-        const val firebaseVersion = "2.8.1"
+        const val firebaseCrashlyticsVersion = "2.8.1"
+        const val firebasePerformanceVersion = "1.4.0"
+        const val firebaseToolsVersion = "3.4.0"
     }
 
     const val androidBuildTools = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
     const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     const val googleServices = "com.google.gms:google-services:${Versions.googleServicesVersion}"
-    const val firebaseServices = "com.google.firebase:firebase-crashlytics-gradle:${Versions.firebaseVersion}"
+    const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-gradle:${Versions.firebaseCrashlyticsVersion}"
+    const val firebasePerformance = "com.google.firebase:perf-plugin:${Versions.firebasePerformanceVersion}"
+    const val firebaseTools = "com.android.tools.build:gradle:${Versions.firebaseToolsVersion}"
     const val safeArgsGradle =
         "androidx.navigation:navigation-safe-args-gradle-plugin:${CommonVersions.navigation}"
 
     const val kotlinAndroidPlugin = "kotlin-android"
     const val googleServicesPlugin = "com.google.gms.google-services"
-    const val googleServicesCrashlyticsPlugin = "com.google.firebase.crashlytics"
+    const val firebaseCrashlyticsPlugin = "com.google.firebase.crashlytics"
+    const val firebasePerformancePlugin = "com.google.firebase.firebase-perf"
     const val kotlinAndroidExtensionsPlugin = "kotlin-android-extensions"
     const val kotlinAndroidKaptPlugin = "kotlin-kapt"
     const val safeArgsPlugin = "androidx.navigation.safeargs.kotlin"
@@ -65,6 +70,7 @@ object Firebase {
     const val firebase = "com.google.firebase:firebase-bom:${Versions.bom}"
     const val analytics = "com.google.firebase:firebase-analytics-ktx"
     const val crashlytics = "com.google.firebase:firebase-crashlytics-ktx"
+    const val performance = "com.google.firebase:firebase-perf-ktx"
     const val auth = "com.google.firebase:firebase-auth-ktx"
     const val invites = "com.google.firebase:firebase-invites:${Versions.invites}"
     const val storage = "com.google.firebase:firebase-storage-ktx"
@@ -214,6 +220,7 @@ fun DependencyHandler.firebase() {
     addDependency(platform(Firebase.firebase))
     addDependency(Firebase.analytics)
     addDependency(Firebase.crashlytics)
+    addDependency(Firebase.performance)
 }
 
 fun DependencyHandler.network(config: DependencyConfig = DependencyConfig.Api) {

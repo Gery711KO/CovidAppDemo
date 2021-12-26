@@ -1,7 +1,8 @@
 plugins {
     id("com.android.application")
     id(BuildPlugins.googleServicesPlugin)
-    id(BuildPlugins.googleServicesCrashlyticsPlugin)
+    id(BuildPlugins.firebaseCrashlyticsPlugin)
+    id(BuildPlugins.firebasePerformancePlugin)
     id(BuildPlugins.kotlinAndroidPlugin)
     id(BuildPlugins.kotlinAndroidExtensionsPlugin)
     id(BuildPlugins.kotlinAndroidKaptPlugin)
@@ -92,9 +93,7 @@ dependencies {
     addDependency(Libraries.material)
     addDependency(Libraries.timber)
 
-    addDependency(platform(Firebase.firebase))
-    addDependency(Firebase.analytics)
-    addDependency(Firebase.crashlytics)
+    firebase()
 
     koin()
     androidX()
