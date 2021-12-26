@@ -247,7 +247,7 @@ fun DependencyHandler.unitTests() {
     addDependency(TestLibraries.junit4, DependencyConfig.Test)
     addDependency(TestLibraries.coroutinesTesting, DependencyConfig.Test)
     addDependency(TestLibraries.testing, DependencyConfig.Test)
-    addDependency(TestLibraries.mockk, DependencyConfig.Test)
+    addDependency(TestLibraries.mockitoKotlin, DependencyConfig.Test)
     addDependency(TestLibraries.testRunner, DependencyConfig.Test)
     addDependency(TestLibraries.junitExt, DependencyConfig.Test)
 }
