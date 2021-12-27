@@ -1,11 +1,4 @@
-safffffffasfsa
+### CovidApp
 
-safasfsafasf
-asfsaf
-asf
-asf
-saf
-saf
-as
-fa
-fas
+# - https://koronavirus.gov.hu és /elhunytak helyeről halott adatok legyűjtése
+# - Az adatokat különbőző filterek segítségével szűrhetjük.
