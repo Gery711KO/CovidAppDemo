@@ -11,6 +11,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        create("release") {
+            storeFile = file("C:\\Users\\Gery\\keystores\\upload-keystore.jks")
+            storePassword = "KZW201suna."
+            keyAlias = "upload"
+            keyPassword = "KZW201suna."
+        }
+    }
     compileSdk = AndroidSdk.compileApi
     buildToolsVersion = AndroidSdk.buildTools
 
@@ -31,6 +39,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
             firebaseAppDistribution {
                 artifactType = "APK"
                 releaseNotesFile="release-notes.txt"
