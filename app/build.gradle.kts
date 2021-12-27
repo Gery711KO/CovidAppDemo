@@ -11,10 +11,6 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        create("release") {
-        }
-    }
     compileSdk = AndroidSdk.compileApi
     buildToolsVersion = AndroidSdk.buildTools
 
@@ -35,7 +31,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("release")
             firebaseAppDistribution {
                 artifactType = "APK"
                 releaseNotesFile="release-notes.txt"
