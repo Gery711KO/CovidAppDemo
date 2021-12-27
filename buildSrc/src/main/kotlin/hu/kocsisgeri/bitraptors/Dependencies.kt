@@ -22,16 +22,19 @@ object BuildPlugins {
         const val firebaseCrashlyticsVersion = "2.8.1"
         const val firebasePerformanceVersion = "1.4.0"
         const val firebaseToolsVersion = "3.4.0"
-        const val firebaseAppDistribution= "2.2.0"
+        const val firebaseAppDistribution = "2.2.0"
     }
 
     const val androidBuildTools = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
     const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     const val googleServices = "com.google.gms:google-services:${Versions.googleServicesVersion}"
-    const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-gradle:${Versions.firebaseCrashlyticsVersion}"
-    const val firebasePerformance = "com.google.firebase:perf-plugin:${Versions.firebasePerformanceVersion}"
+    const val firebaseCrashlytics =
+        "com.google.firebase:firebase-crashlytics-gradle:${Versions.firebaseCrashlyticsVersion}"
+    const val firebasePerformance =
+        "com.google.firebase:perf-plugin:${Versions.firebasePerformanceVersion}"
     const val firebaseTools = "com.android.tools.build:gradle:${Versions.firebaseToolsVersion}"
-    const val firebaseAppDistribution = "com.google.firebase:firebase-appdistribution-gradle:${Versions.firebaseAppDistribution}"
+    const val firebaseAppDistribution =
+        "com.google.firebase:firebase-appdistribution-gradle:${Versions.firebaseAppDistribution}"
     const val safeArgsGradle =
         "androidx.navigation:navigation-safe-args-gradle-plugin:${CommonVersions.navigation}"
 
