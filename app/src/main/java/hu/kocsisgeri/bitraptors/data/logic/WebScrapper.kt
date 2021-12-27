@@ -5,7 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
 
-class WebScrapper {
+class WebScrapper{
     suspend fun getDataFromWeb(index: Int): List<Person> = withContext(Dispatchers.IO) {
         val doc = Jsoup.connect("https://koronavirus.gov.hu/elhunytak?page=$index").get()
         val children = doc.select("tbody").firstOrNull()?.children()
