@@ -1,4 +1,4 @@
 ### CovidApp
 
-# - https://koronavirus.gov.hu és /elhunytak helyeről halott adatok legyűjtése
-# - Az adatokat különbőző filterek segítségével szűrhetjük.
+ - https://koronavirus.gov.hu és /elhunytak helyeről halott adatok legyűjtése
+ - Az adatokat különbőző filterek segítségével szűrhetjük.
