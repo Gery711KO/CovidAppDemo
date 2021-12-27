@@ -33,6 +33,7 @@ android {
             )
             firebaseAppDistribution {
                 artifactType = "APK"
+                releaseNotesFile="release-notes.txt"
             }
         }
     }
