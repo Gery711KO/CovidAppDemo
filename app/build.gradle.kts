@@ -13,10 +13,6 @@ plugins {
 android {
     signingConfigs {
         create("release") {
-            storeFile = file("C:\\Users\\Gery\\keystores\\upload-keystore.jks")
-            storePassword = "KZW201suna."
-            keyAlias = "upload"
-            keyPassword = "KZW201suna."
         }
     }
     compileSdk = AndroidSdk.compileApi
