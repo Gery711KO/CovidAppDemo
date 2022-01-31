@@ -264,7 +264,6 @@ fun DependencyHandler.uiTests() {
     addDependency(TestLibraries.espresso, DependencyConfig.AndroidTest)
     addDependency(TestLibraries.testing, DependencyConfig.AndroidTest)
     addDependency(TestLibraries.testingKtx, DependencyConfig.AndroidTest)
-    addDependency(TestLibraries.mockk, DependencyConfig.AndroidTest)
     addDependency(TestLibraries.coroutinesTesting, DependencyConfig.AndroidTest)
     addDependency(Libraries.koinTest, DependencyConfig.AndroidTest)
     addDependency(TestLibraries.junitExt, DependencyConfig.AndroidTest)
