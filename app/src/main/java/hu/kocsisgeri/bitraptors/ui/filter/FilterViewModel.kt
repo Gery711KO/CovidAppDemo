@@ -1,4 +1,4 @@
-package hu.kocsisgeri.bitraptors.ui.main
+package hu.kocsisgeri.bitraptors.ui.filter
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData

@@ -12,8 +12,8 @@ import hu.kocsisgeri.bitraptors.databinding.FragmentMainBinding
 import hu.kocsisgeri.bitraptors.ui.adapter.DiffListAdapter
 import hu.kocsisgeri.bitraptors.ui.adapter.cell.cellPersonDelegate
 import hu.kocsisgeri.bitraptors.ui.decoration.ItemOffsetDecoration
+import hu.kocsisgeri.bitraptors.ui.filter.FilterFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
@@ -33,8 +33,6 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //throw RuntimeException("Test Crash") // Force a crash
 
         binding.swipeToRefresh.setProgressBackgroundColorSchemeColor(Color.rgb(14, 14, 14))
         binding.swipeToRefresh.setColorSchemeColors(Color.rgb(218, 218, 218))
@@ -80,6 +78,9 @@ class MainFragment : Fragment() {
                     binding.downloadingLayout.visibility = View.GONE
                     binding.internetConnectionText.visibility = View.VISIBLE
                     binding.swipeToRefresh.isRefreshing = false
+                }
+                is ApiResult.Loading -> {
+                    listAdapter.updateData(it.data)
                 }
             }
         }

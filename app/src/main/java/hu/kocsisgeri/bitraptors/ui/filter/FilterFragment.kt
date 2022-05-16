@@ -1,14 +1,17 @@
-package hu.kocsisgeri.bitraptors.ui.main
+package hu.kocsisgeri.bitraptors.ui.filter
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import hu.kocsisgeri.bitraptors.R
 import hu.kocsisgeri.bitraptors.databinding.FilterDialogBinding
+import hu.kocsisgeri.bitraptors.ui.main.MainActivity
+import kotlinx.coroutines.delay
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FilterFragment : BottomSheetDialogFragment() {
@@ -31,7 +34,7 @@ class FilterFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FilterDialogBinding.inflate(inflater, container, false)
-        binding.root.background = context?.getDrawable(android.R.color.transparent)
+        binding.root.background = this.context?.let { AppCompatResources.getDrawable(it, android.R.color.transparent) }
         return binding.root
     }
 

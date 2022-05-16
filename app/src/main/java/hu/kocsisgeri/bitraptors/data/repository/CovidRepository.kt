@@ -6,17 +6,20 @@ import hu.kocsisgeri.bitraptors.data.logic.Filter
 import hu.kocsisgeri.bitraptors.data.logic.WebScrapper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.flow.SharingStarted.Companion.Eagerly
+import timber.log.Timber
 import kotlin.coroutines.CoroutineContext
 import kotlin.math.roundToInt
+import kotlin.reflect.full.memberProperties
 
 class CovidRepository(
     override val coroutineContext: CoroutineContext = Dispatchers.IO,
     private val dao: PersonDao,
     private val webScrape: WebScrapper,
 ) : CoroutineScope {
-    val filter = MutableStateFlow<Filter>(Filter(null, null, null))
+    val filter = MutableStateFlow(Filter(null, null, null))
     val refresh = MutableSharedFlow<Unit>(0, 100)
 
     fun getCovidList(): Flow<ApiResult<List<Person>>> = refresh.flatMapLatest {
@@ -25,9 +28,9 @@ class CovidRepository(
                 try {
                     var index = 0
                     val isMaxFound =
-                        cache.maxOfOrNull { x -> x.id } ?: 0 == webScrape.getMaxId()
+                        (cache.maxOfOrNull { x -> x.id } ?: 0) == webScrape.getMaxId()
                             ?.toInt()
-                    val isMinFound = cache.minOfOrNull { x -> x.id } ?: 0 == 1
+                    val isMinFound = (cache.minOfOrNull { x -> x.id } ?: 0) == 1
                     val lastPage = webScrape.getLastPage().toDouble()
 
                     if (!isMinFound || !isMaxFound) {
@@ -49,9 +52,9 @@ class CovidRepository(
                         emit(
                             ApiResult.Success(dao.getData())
                         )
-                    } else emit(
-                        ApiResult.Success(cache)
-                    )
+                    } else {
+                        emit(ApiResult.Success(cache))
+                    }
                 } catch (exception: Exception) {
                     emit(ApiResult.Error(exception.message ?: "Error"))
                 } finally {
@@ -62,9 +65,12 @@ class CovidRepository(
             }
         }.flatMapLatest { halottak ->
             filter.map {
-                if (halottak is ApiResult.Success) {
-                    halottak.copy(it.getFilteredList(halottak.data.sortedByDescending { x -> x.id }))
-                } else halottak
+                when (halottak) {
+                    is ApiResult.Success -> {
+                        halottak.copy(it.getFilteredList(halottak.data.sortedByDescending { x -> x.id }))
+                    }
+                    else -> halottak
+                }
             }
         }
     }

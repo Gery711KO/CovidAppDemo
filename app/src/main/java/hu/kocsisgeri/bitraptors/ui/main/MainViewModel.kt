@@ -18,6 +18,7 @@ class MainViewModel(private val repo: CovidRepository) : ViewModel() {
                 is ApiResult.Success -> ApiResult.Success(personList.data.map {
                     PersonUI(person = it, isOpened = it.id == selected)
                 })
+                is ApiResult.Loading -> ApiResult.Loading(emptyList())
             }
         }
     }.asLiveData()

@@ -12,14 +12,14 @@ class WebScrapper{
 
         children?.map { element ->
             Person(
-                element.child(0).text().toInt(),
-                element.child(1).text().let {
+                id = element.child(0).text().toInt(),
+                sex = element.child(1).text().let {
                     if (it.lowercase() != "férfi") {
                         "Nő"
                     } else "Férfi"
                 }.toString(),
-                element.child(2).text().toInt(),
-                element.child(3).text()
+                age = element.child(2).text().toInt(),
+                baseIllnesses = element.child(3).text()
             )
         } ?: emptyList<Person>()
     }
@@ -33,12 +33,11 @@ class WebScrapper{
 
     suspend fun getVaccinated(): String = withContext(Dispatchers.IO) {
         Jsoup.connect("https://koronavirus.gov.hu").get()
-            .getElementsByAttributeValue("id", "api-beoltottak").get(0).text()
+            .getElementsByAttributeValue("id", "api-beoltottak")[0].text()
     }
 
     suspend fun getMaxId(): String = withContext(Dispatchers.IO) {
         Jsoup.connect("https://koronavirus.gov.hu/elhunytak").get()
-            .getElementsByAttributeValue("class", "views-field views-field-field-elhunytak-sorszam")
-            .get(1).text()
+            .getElementsByAttributeValue("class", "views-field views-field-field-elhunytak-sorszam")[1].text()
     }
 }
