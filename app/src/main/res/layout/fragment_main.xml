@@ -358,4 +358,59 @@
         app:maxImageSize="30dp"
         app:tint="@color/titleColor" />
 
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:layoutDescription="@xml/filtering_scene"
+        android:elevation="12dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/filtering_dialog"
+            android:background="@drawable/rounded_bottomsheet_dialog"
+            android:backgroundTint="@color/fullDarkColor"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Circular progress indicator-->
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/filteringProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:indeterminate="true"
+                android:padding="16dp"
+                app:indicatorColor="@color/progressBarCircleColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tooltip"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tooltip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="24dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/armata"
+                android:padding="16dp"
+                android:text="Szűrés folyamatban...\nKérem várjon!"
+                android:textAlignment="center"
+                android:textColor="@color/titleColor"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/filteringProgress"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

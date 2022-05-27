@@ -43,17 +43,19 @@ class FilterFragment : BottomSheetDialogFragment() {
 
         binding.filterButton.setOnClickListener {
             filterVM.filterButtonFunc(
-                binding.ageMin.text.toString().let {
+                binding.ageMin.text.toString()?.let {
                     if (it.isNotEmpty()) {
                         it.toInt()
-                    } else 0
+                    } else null
                 },
                 binding.ageMax.text.toString().let {
                     if (it.isNotEmpty()) {
                         it.toInt()
-                    } else 150
+                    } else null
                 },
-                binding.keyword.text.toString()
+                binding.keyword.text.toString().let {
+                    it.ifEmpty { null }
+                }
             )
             this.dismiss()
         }

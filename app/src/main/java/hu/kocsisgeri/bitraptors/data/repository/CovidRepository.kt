@@ -21,6 +21,7 @@ class CovidRepository(
 ) : CoroutineScope {
     val filter = MutableStateFlow(Filter(null, null, null))
     val refresh = MutableSharedFlow<Unit>(0, 100)
+    val filtering = MutableSharedFlow<Unit>(0, 100)
 
     fun getCovidList(): Flow<ApiResult<List<Person>>> = refresh.flatMapLatest {
         flow {

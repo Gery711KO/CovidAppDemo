@@ -7,13 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import hu.kocsisgeri.bitraptors.data.repository.ApiResult
 import hu.kocsisgeri.bitraptors.databinding.FragmentMainBinding
 import hu.kocsisgeri.bitraptors.ui.adapter.DiffListAdapter
+import hu.kocsisgeri.bitraptors.ui.adapter.NotifyingLinearLayoutManager
 import hu.kocsisgeri.bitraptors.ui.adapter.cell.cellPersonDelegate
 import hu.kocsisgeri.bitraptors.ui.decoration.ItemOffsetDecoration
 import hu.kocsisgeri.bitraptors.ui.filter.FilterFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.Bidi
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
@@ -34,39 +37,29 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.swipeToRefresh.setProgressBackgroundColorSchemeColor(Color.rgb(14, 14, 14))
-        binding.swipeToRefresh.setColorSchemeColors(Color.rgb(218, 218, 218))
+        setupList()
+        setupOther()
+        setupSwipeToRefresh()
+        setupCovidsObserver()
+        setupVaccinatedObserver()
+        setupMaxIdObserver()
+        setupFilterObserver()
+    }
 
-        binding.viewRC.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = listAdapter
-            addItemDecoration(decoration)
-        }
-
-        binding.swipeToRefresh.setOnRefreshListener {
-            viewModel.refreshFunc()
-        }
-
-        binding.fab.setOnClickListener {
-            if (childFragmentManager.fragments.size == 0) {
-                filter.show(childFragmentManager, FilterFragment.TAG)
-            }
-        }
-
-        binding.scrollToTop.setOnClickListener {
-            binding.viewRC.scrollToPosition(0)
-        }
-
+    private fun setupCovidsObserver() {
         viewModel.covids.observe(viewLifecycleOwner) {
             when (it) {
                 is ApiResult.Success -> {
                     listAdapter.updateData(it.data)
+                    binding.caseCount.text = it.data.size.toString()
                     binding.downloadingLayout.visibility = View.GONE
                     binding.progressBar.visibility = View.GONE
                     binding.viewRC.visibility = View.VISIBLE
                     binding.caseCount.visibility = View.VISIBLE
                     binding.caseCount.text = it.data.size.toString()
-                    binding.swipeToRefresh.isRefreshing = false
+                    if (!binding.viewRC.isComputingLayout) {
+                        binding.motionLayout.transitionToStart()
+                    }
                 }
                 is ApiResult.Progress -> {
                     binding.viewRC.visibility = View.GONE
@@ -79,12 +72,43 @@ class MainFragment : Fragment() {
                     binding.internetConnectionText.visibility = View.VISIBLE
                     binding.swipeToRefresh.isRefreshing = false
                 }
-                is ApiResult.Loading -> {
-                    listAdapter.updateData(it.data)
-                }
+            }
+        }
+    }
+
+    private fun setupList() {
+        binding.viewRC.apply {
+            layoutManager = NotifyingLinearLayoutManager(context)
+            adapter = listAdapter
+            addItemDecoration(decoration)
+        }
+        (binding.viewRC.layoutManager as NotifyingLinearLayoutManager).mCallback = object : NotifyingLinearLayoutManager.OnLayoutCompleteCallback {
+            override fun onLayoutComplete() {
+                binding.motionLayout.transitionToStart()
+                binding.viewRC.scrollToPosition(0)
+            }
+        }
+    }
+
+    private fun setupFilterObserver() {
+        viewModel.filtering.observe(viewLifecycleOwner) {
+            binding.motionLayout.transitionToEnd()
+        }
+    }
+
+    private fun setupOther() {
+        binding.fab.setOnClickListener {
+            if (childFragmentManager.fragments.size == 0) {
+                filter.show(childFragmentManager, FilterFragment.TAG)
             }
         }
 
+        binding.scrollToTop.setOnClickListener {
+            binding.viewRC.scrollToPosition(0)
+        }
+    }
+
+    private fun setupVaccinatedObserver() {
         viewModel.vaccinated.observe(viewLifecycleOwner) {
             when (it) {
                 is ApiResult.Success -> {
@@ -102,7 +126,9 @@ class MainFragment : Fragment() {
                 }
             }
         }
+    }
 
+    private fun setupMaxIdObserver() {
         viewModel.maxId.observe(viewLifecycleOwner) {
 
             when (it) {
@@ -120,6 +146,14 @@ class MainFragment : Fragment() {
                     binding.swipeToRefresh.isRefreshing = false
                 }
             }
+        }
+    }
+
+    private fun setupSwipeToRefresh() {
+        binding.swipeToRefresh.setProgressBackgroundColorSchemeColor(Color.rgb(14, 14, 14))
+        binding.swipeToRefresh.setColorSchemeColors(Color.rgb(218, 218, 218))
+        binding.swipeToRefresh.setOnRefreshListener {
+            viewModel.refreshFunc()
         }
     }
 
