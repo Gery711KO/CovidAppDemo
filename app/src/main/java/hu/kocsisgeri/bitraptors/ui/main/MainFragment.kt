@@ -123,7 +123,9 @@ class MainFragment : Fragment() {
         binding.swipeToRefresh.setProgressBackgroundColorSchemeColor(Color.rgb(14, 14, 14))
         binding.swipeToRefresh.setColorSchemeColors(Color.rgb(218, 218, 218))
         binding.swipeToRefresh.setOnRefreshListener {
-            viewModel.refreshFunc()
+            if (!loadingData()) {
+                viewModel.refreshFunc()
+            }
         }
     }
     private fun setupList() {
@@ -193,8 +195,12 @@ class MainFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        if (binding.progressBar.progress == binding.progressBar.max || binding.progressBar.progress == 0) {
+        if (!loadingData()) {
             viewModel.refreshFunc()
         }
+    }
+
+    fun loadingData() : Boolean {
+        return !(binding.progressBar.progress == binding.progressBar.max || binding.progressBar.progress == 0)
     }
 }
