@@ -60,7 +60,7 @@ class MainFragment : Fragment() {
                 is ApiResult.Success -> {
                     listAdapter.updateData(it.data)
                     binding.caseCount.text = it.data.size.toString()
-                    binding.downloadingLayout.visibility = View.GONE
+                    binding.motionDownload.transitionToStart()
                     binding.progressBar.visibility = View.GONE
                     binding.caseCount.visibility = View.VISIBLE
                     binding.caseCount.text = it.data.size.toString()
@@ -73,7 +73,7 @@ class MainFragment : Fragment() {
                     listAdapter.updateData(listOf())
                     binding.caseCount.visibility = View.GONE
                     binding.progressBar.visibility = View.VISIBLE
-                    binding.downloadingLayout.visibility = View.VISIBLE
+                    binding.motionDownload.transitionToEnd()
                     binding.progressBar.progress = it.percentage
                     binding.swipeToRefresh.isRefreshing = false
                 }
@@ -81,8 +81,7 @@ class MainFragment : Fragment() {
                     if (binding.viewRC.adapter?.itemCount == 0) {
                         listAdapter.updateData(listOf(EmptyUI()))
                     }
-                    binding.downloadingLayout.visibility = View.GONE
-                    binding.internetConnectionText.visibility = View.VISIBLE
+                    binding.motionDownload.transitionToStart()
                     binding.swipeToRefresh.isRefreshing = false
                 }
             }
@@ -107,17 +106,13 @@ class MainFragment : Fragment() {
                 is ApiResult.Success -> {
                     binding.vaccinatedText.text = it.data.vaccinated
                     binding.deadText.text = it.data.maxId
-                    binding.progressCircle.visibility = View.GONE
-                    binding.internetConnectionText.visibility = View.GONE
-                    binding.vaccinatedLayout.visibility = View.VISIBLE
-                    binding.deadLayout.visibility = View.VISIBLE
                     binding.swipeToRefresh.isRefreshing = false
+                    binding.motionInternet.transitionToStart()
+                    binding.motionData.transitionToEnd()
                 }
                 is ApiResult.Error -> {
-                    binding.internetConnectionText.visibility = View.VISIBLE
-                    binding.progressCircle.visibility = View.GONE
-                    binding.vaccinatedLayout.visibility = View.GONE
-                    binding.deadLayout.visibility = View.GONE
+                    binding.motionData.transitionToStart()
+                    binding.motionInternet.transitionToEnd()
                     binding.swipeToRefresh.isRefreshing = false
                 }
             }
@@ -184,20 +179,14 @@ class MainFragment : Fragment() {
         }
         binding.motionLayout.jumpToState(R.id.start)
         binding.motionLayout.setTransitionListener(object: MotionLayout.TransitionListener {
-            override fun onTransitionStarted(motionLayout: MotionLayout?, startId: Int, endId: Int) {
-                TODO("Not yet implemented")
-            }
-            override fun onTransitionChange(motionLayout: MotionLayout?, startId: Int, endId: Int, progress: Float) {
-                TODO("Not yet implemented")
-            }
+            override fun onTransitionStarted(motionLayout: MotionLayout?, startId: Int, endId: Int) {}
+            override fun onTransitionChange(motionLayout: MotionLayout?, startId: Int, endId: Int, progress: Float) {}
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
                 if (currentId == motionLayout?.startState) {
                     binding.viewRC.scrollToPosition(0)
                 }
             }
-
             override fun onTransitionTrigger(motionLayout: MotionLayout?, triggerId: Int, positive: Boolean, progress: Float) {}
-
         })
     }
 

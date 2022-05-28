@@ -32,189 +32,194 @@
             app:title="@string/app_name"
             app:titleCollapseMode="scale">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/vaccinatedLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:visibility="visible">
-
-                    <TextView
-                        android:id="@+id/vaccinatedText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="20dp"
-                        android:background="@drawable/vaccinated_border"
-                        android:fontFamily="@font/armata"
-                        android:gravity="center|start"
-                        android:padding="16dp"
-                        android:textColor="@color/vaccinatedTextColor"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="6 000 000" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawingCacheQuality="high"
-                        android:fontFamily="@font/armata"
-                        android:gravity="end|center_vertical"
-                        android:padding="16dp"
-                        android:textColor="@color/mainTextColor"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:drawableRightCompat="@drawable/resized_vaccinated"
-                        app:drawableTint="@color/collapseIconColor"
-                        app:layout_constraintEnd_toEndOf="@id/vaccinatedText"
-                        app:layout_constraintTop_toTopOf="@id/vaccinatedText" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/deadLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="64dp"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/vaccinatedLayout"
-                    tools:visibility="visible">
-
-
-                    <TextView
-                        android:id="@+id/deadText"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="20dp"
-                        android:background="@drawable/vaccinated_border"
-                        android:fontFamily="@font/armata"
-                        android:gravity="center|start"
-                        android:padding="16dp"
-                        android:textColor="@color/deadTextColor"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="40 000" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawingCacheQuality="high"
-                        android:fontFamily="@font/armata"
-                        android:gravity="end|center_vertical"
-                        android:padding="16dp"
-                        android:textColor="@color/mainTextColor"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:drawableRightCompat="@drawable/resized_dead"
-                        app:drawableTint="@color/collapseIconColor"
-                        app:layout_constraintEnd_toEndOf="@id/deadText"
-                        app:layout_constraintTop_toTopOf="@id/deadText" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <!-- Circular progress indicator-->
-                <com.google.android.material.progressindicator.CircularProgressIndicator
-                    android:id="@+id/progressCircle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:indeterminate="true"
-                    android:visibility="visible"
-                    app:indicatorColor="@color/progressBarCircleColor"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <com.google.android.material.appbar.MaterialToolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/internetConnectionText"
+                android:id="@+id/dataLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="54dp"
-                android:background="@drawable/rounded_corner"
-                android:visibility="gone">
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/warning_icon"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:paddingStart="24dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/resized_warning"
-                    app:tint="@color/warningColor" />
-
-                <TextView
-                    android:id="@+id/noNet"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/armata"
-                    android:paddingStart="16dp"
-                    android:paddingTop="16dp"
-                    android:paddingEnd="24dp"
-                    android:text="@string/noInternet"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"
-                    android:textColor="@color/warningColor"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@id/swipe"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/warning_icon"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/swipe"
+                <androidx.constraintlayout.motion.widget.MotionLayout
+                    android:id="@+id/motionData"
+                    app:layoutDescription="@xml/data_scene"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="56dp"
-                    android:gravity="center"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="24dp"
-                    android:paddingBottom="16dp"
-                    android:text="A frissítéshez húzza le az ujját a képernyőn."
-                    android:textColor="@color/mainTextColor"
-                    android:textSize="12sp"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/noNet" />
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/vaccinatedLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/deadLayout" >
+
+                        <TextView
+                            android:id="@+id/vaccinatedText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/vaccinated_border"
+                            android:fontFamily="@font/armata"
+                            android:gravity="center|start"
+                            android:padding="16dp"
+                            android:textColor="@color/vaccinatedTextColor"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="6 000 000" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawingCacheQuality="high"
+                            android:fontFamily="@font/armata"
+                            android:gravity="end|center_vertical"
+                            android:padding="16dp"
+                            android:textColor="@color/mainTextColor"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:drawableRightCompat="@drawable/resized_vaccinated"
+                            app:drawableTint="@color/collapseIconColor"
+                            app:layout_constraintEnd_toEndOf="@id/vaccinatedText"
+                            app:layout_constraintTop_toTopOf="@id/vaccinatedText" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/deadLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="64dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/vaccinatedLayout" >
+
+
+                        <TextView
+                            android:id="@+id/deadText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/vaccinated_border"
+                            android:fontFamily="@font/armata"
+                            android:gravity="center|start"
+                            android:padding="16dp"
+                            android:textColor="@color/deadTextColor"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="40 000" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawingCacheQuality="high"
+                            android:fontFamily="@font/armata"
+                            android:gravity="end|center_vertical"
+                            android:padding="16dp"
+                            android:textColor="@color/mainTextColor"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:drawableRightCompat="@drawable/resized_dead"
+                            app:drawableTint="@color/collapseIconColor"
+                            app:layout_constraintEnd_toEndOf="@id/deadText"
+                            app:layout_constraintTop_toTopOf="@id/deadText" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.motion.widget.MotionLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.motion.widget.MotionLayout
+                android:id="@+id/motionInternet"
+                app:layoutDescription="@xml/no_internet_scene"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_gravity="center">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/internetConnectionText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_corner"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/warning_icon"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:paddingStart="24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/resized_warning"
+                        app:tint="@color/warningColor" />
+
+                    <TextView
+                        android:id="@+id/noNet"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/armata"
+                        android:paddingStart="16dp"
+                        android:paddingTop="16dp"
+                        android:paddingEnd="24dp"
+                        android:text="@string/noInternet"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/warningColor"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@id/swipe"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/warning_icon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/swipe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="56dp"
+                        android:gravity="center"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="24dp"
+                        android:paddingBottom="16dp"
+                        android:text="A frissítéshez húzza le az ujját a képernyőn."
+                        android:textColor="@color/mainTextColor"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/noNet" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.motion.widget.MotionLayout>
 
             <TextView
                 android:id="@+id/caseCount"
@@ -249,65 +254,73 @@
             app:indicatorColor="@color/progressBarCircleColor"
             tools:visibility="visible" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/downloadingLayout"
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/motionDownload"
+            app:layoutDescription="@xml/loading_scene"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/rounded_bottom"
-            android:visibility="visible">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/downloading"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/armata"
-                android:gravity="center_horizontal"
-                android:paddingLeft="16dp"
-                android:paddingTop="16dp"
-                android:paddingRight="16dp"
-                android:text="Adatok betöltése..."
-                android:textAllCaps="false"
-                android:textColor="@color/titleColor"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/downloadSource"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/progressCircle2"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/downloadingLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_bottom"
+                android:visibility="visible">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/downloadSource"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:fontFamily="@font/armata"
-                android:gravity="center_horizontal"
-                android:paddingTop="2dp"
-                android:paddingBottom="10dp"
-                android:text="https://koronavirus.gov.hu/"
-                android:textAllCaps="false"
-                android:textColor="#939393"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/progressCircle2"
-                app:layout_constraintTop_toBottomOf="@id/downloading" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/downloading"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/armata"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="16dp"
+                    android:paddingRight="16dp"
+                    android:text="Adatok betöltése..."
+                    android:textAllCaps="false"
+                    android:textColor="@color/titleColor"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/downloadSource"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/progressCircle2"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Circular progress indicator-->
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/progressCircle2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:indeterminate="true"
-                android:padding="16dp"
-                app:indicatorColor="@color/progressBarCircleColor"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/downloadSource"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/armata"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="10dp"
+                    android:text="https://koronavirus.gov.hu/"
+                    android:textAllCaps="false"
+                    android:textColor="#939393"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/progressCircle2"
+                    app:layout_constraintTop_toBottomOf="@id/downloading" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Circular progress indicator-->
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/progressCircle2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    android:padding="16dp"
+                    app:indicatorColor="@color/progressBarCircleColor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.motion.widget.MotionLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
