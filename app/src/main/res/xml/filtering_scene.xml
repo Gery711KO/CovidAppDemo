@@ -3,6 +3,7 @@
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
     <Transition
+        android:id="@+id/bottom_loading"
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@+id/start"
         motion:duration="200">
@@ -15,14 +16,25 @@
             android:layout_height="wrap_content"
             motion:layout_constraintTop_toBottomOf="parent" />
 
+        <Constraint android:id="@id/line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@id/filtering_dialog"/>
+
     </ConstraintSet>
 
-    <ConstraintSet android:id="@+id/end">
+    <ConstraintSet android:id="@+id/end"
+        android:layout_height="wrap_content">
 
         <Constraint android:id="@id/filtering_dialog"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             motion:layout_constraintTop_toTopOf="parent"/>
+
+        <Constraint android:id="@id/line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@id/filtering_dialog"/>
 
     </ConstraintSet>
 

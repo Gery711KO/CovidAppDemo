@@ -20,10 +20,11 @@ class CovidRepository(
     private val webScrape: WebScrapper,
 ) : CoroutineScope {
     val filter = MutableStateFlow(Filter(null, null, null))
-    val refresh = MutableSharedFlow<Unit>(0, 100)
+    val refreshCovid = MutableSharedFlow<Unit>(0, 100)
+    val refreshData = MutableSharedFlow<Unit>(0, 100)
     val filtering = MutableSharedFlow<Unit>(0, 100)
 
-    fun getCovidList(): Flow<ApiResult<List<Person>>> = refresh.flatMapLatest {
+    fun getCovidList(): Flow<ApiResult<List<Person>>> = refreshData.flatMapLatest {
         flow {
             dao.getData().let { cache ->
                 try {
@@ -76,7 +77,7 @@ class CovidRepository(
         }
     }
 
-    fun getCovidVaccinated(): Flow<ApiResult<String>> = refresh.flatMapLatest {
+    fun getCovidVaccinated(): Flow<ApiResult<String>> = refreshCovid.flatMapLatest {
         flow {
             try {
                 val vaccinatedNum = webScrape.getVaccinated()
@@ -87,7 +88,7 @@ class CovidRepository(
         }
     }
 
-    fun getCovidMaxId(): Flow<ApiResult<String>> = refresh.flatMapLatest {
+    fun getCovidMaxId(): Flow<ApiResult<String>> = refreshCovid.flatMapLatest {
         flow {
             try {
                 val maxId = webScrape.getMaxId()

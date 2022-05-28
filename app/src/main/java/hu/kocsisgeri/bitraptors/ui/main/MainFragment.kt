@@ -5,16 +5,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
+import hu.kocsisgeri.bitraptors.R
 import hu.kocsisgeri.bitraptors.data.repository.ApiResult
 import hu.kocsisgeri.bitraptors.databinding.FragmentMainBinding
 import hu.kocsisgeri.bitraptors.ui.adapter.DiffListAdapter
+import hu.kocsisgeri.bitraptors.ui.adapter.ListItem
 import hu.kocsisgeri.bitraptors.ui.adapter.NotifyingLinearLayoutManager
+import hu.kocsisgeri.bitraptors.ui.adapter.cell.cellEmptyDelegate
 import hu.kocsisgeri.bitraptors.ui.adapter.cell.cellPersonDelegate
 import hu.kocsisgeri.bitraptors.ui.decoration.ItemOffsetDecoration
 import hu.kocsisgeri.bitraptors.ui.filter.FilterFragment
+import hu.kocsisgeri.bitraptors.ui.model.EmptyUI
+import kotlinx.android.synthetic.main.fragment_main.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.Bidi
 
@@ -22,7 +31,7 @@ class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
 
     private val viewModel: MainViewModel by viewModel()
-    private val listAdapter = DiffListAdapter(cellPersonDelegate { viewModel.selected.tryEmit(it) })
+    private val listAdapter = DiffListAdapter()
     private val decoration = ItemOffsetDecoration()
     private val filter = FilterFragment()
 
@@ -41,8 +50,7 @@ class MainFragment : Fragment() {
         setupOther()
         setupSwipeToRefresh()
         setupCovidsObserver()
-        setupVaccinatedObserver()
-        setupMaxIdObserver()
+        setupDataLoadedObserver()
         setupFilterObserver()
     }
 
@@ -54,20 +62,25 @@ class MainFragment : Fragment() {
                     binding.caseCount.text = it.data.size.toString()
                     binding.downloadingLayout.visibility = View.GONE
                     binding.progressBar.visibility = View.GONE
-                    binding.viewRC.visibility = View.VISIBLE
                     binding.caseCount.visibility = View.VISIBLE
                     binding.caseCount.text = it.data.size.toString()
                     if (!binding.viewRC.isComputingLayout) {
                         binding.motionLayout.transitionToStart()
                     }
+                    binding.swipeToRefresh.isRefreshing = false
                 }
                 is ApiResult.Progress -> {
-                    binding.viewRC.visibility = View.GONE
+                    listAdapter.updateData(listOf())
                     binding.caseCount.visibility = View.GONE
                     binding.progressBar.visibility = View.VISIBLE
+                    binding.downloadingLayout.visibility = View.VISIBLE
                     binding.progressBar.progress = it.percentage
+                    binding.swipeToRefresh.isRefreshing = false
                 }
                 is ApiResult.Error -> {
+                    if (binding.viewRC.adapter?.itemCount == 0) {
+                        listAdapter.updateData(listOf(EmptyUI()))
+                    }
                     binding.downloadingLayout.visibility = View.GONE
                     binding.internetConnectionText.visibility = View.VISIBLE
                     binding.swipeToRefresh.isRefreshing = false
@@ -76,72 +89,34 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun setupList() {
-        binding.viewRC.apply {
-            layoutManager = NotifyingLinearLayoutManager(context)
-            adapter = listAdapter
-            addItemDecoration(decoration)
-        }
-        (binding.viewRC.layoutManager as NotifyingLinearLayoutManager).mCallback = object : NotifyingLinearLayoutManager.OnLayoutCompleteCallback {
-            override fun onLayoutComplete() {
-                binding.motionLayout.transitionToStart()
-                binding.viewRC.scrollToPosition(0)
-            }
-        }
-    }
-
-    private fun setupFilterObserver() {
-        viewModel.filtering.observe(viewLifecycleOwner) {
-            binding.motionLayout.transitionToEnd()
-        }
-    }
-
-    private fun setupOther() {
-        binding.fab.setOnClickListener {
-            if (childFragmentManager.fragments.size == 0) {
-                filter.show(childFragmentManager, FilterFragment.TAG)
-            }
-        }
-
-        binding.scrollToTop.setOnClickListener {
-            binding.viewRC.scrollToPosition(0)
-        }
-    }
-
-    private fun setupVaccinatedObserver() {
+    private fun setupDataLoadedObserver() {
         viewModel.vaccinated.observe(viewLifecycleOwner) {
             when (it) {
+                is ApiResult.Success -> { viewModel.vaccinatedLoaded.tryEmit(it.data) }
+                is ApiResult.Error -> { viewModel.vaccinatedLoaded.tryEmit(null) }
+            }
+        }
+        viewModel.maxId.observe(viewLifecycleOwner) {
+            when (it) {
+                is ApiResult.Success -> { viewModel.maxIdLoaded.tryEmit(it.data) }
+                is ApiResult.Error -> { viewModel.maxIdLoaded.tryEmit(null) }
+            }
+        }
+        viewModel.dataLoaded.observe(viewLifecycleOwner) {
+            when(it) {
                 is ApiResult.Success -> {
-                    binding.vaccinatedText.text = it.data
+                    binding.vaccinatedText.text = it.data.vaccinated
+                    binding.deadText.text = it.data.maxId
                     binding.progressCircle.visibility = View.GONE
                     binding.internetConnectionText.visibility = View.GONE
                     binding.vaccinatedLayout.visibility = View.VISIBLE
-                    binding.swipeToRefresh.isRefreshing = false
-                }
-                is ApiResult.Error -> {
-                    binding.internetConnectionText.visibility = View.VISIBLE
-                    binding.progressCircle.visibility = View.GONE
-                    binding.vaccinatedLayout.visibility = View.GONE
-                    binding.swipeToRefresh.isRefreshing = false
-                }
-            }
-        }
-    }
-
-    private fun setupMaxIdObserver() {
-        viewModel.maxId.observe(viewLifecycleOwner) {
-
-            when (it) {
-                is ApiResult.Success -> {
-                    binding.deadText.text = it.data
-                    binding.progressCircle.visibility = View.GONE
-                    binding.internetConnectionText.visibility = View.GONE
                     binding.deadLayout.visibility = View.VISIBLE
                     binding.swipeToRefresh.isRefreshing = false
                 }
                 is ApiResult.Error -> {
                     binding.internetConnectionText.visibility = View.VISIBLE
                     binding.progressCircle.visibility = View.GONE
+                    binding.vaccinatedLayout.visibility = View.GONE
                     binding.deadLayout.visibility = View.GONE
                     binding.swipeToRefresh.isRefreshing = false
                 }
@@ -155,6 +130,75 @@ class MainFragment : Fragment() {
         binding.swipeToRefresh.setOnRefreshListener {
             viewModel.refreshFunc()
         }
+    }
+    private fun setupList() {
+        listAdapter.addDelegates(cellPersonDelegate { viewModel.selected.tryEmit(it)})
+        listAdapter.addDelegates(cellEmptyDelegate())
+        binding.viewRC.apply {
+            layoutManager = NotifyingLinearLayoutManager(context)
+            adapter = listAdapter
+            addItemDecoration(decoration)
+        }
+        (binding.viewRC.layoutManager as NotifyingLinearLayoutManager).mCallback = object : NotifyingLinearLayoutManager.OnLayoutCompleteCallback {
+            override fun onLayoutComplete() {
+                fabEnterAnimation()
+                binding.motionLayout.transitionToStart()
+            }
+        }
+    }
+
+    private fun setupFilterObserver() {
+        viewModel.filtering.observe(viewLifecycleOwner) {
+            fabExitAnimation()
+            binding.motionLayout.transitionToEnd()
+        }
+    }
+
+    private fun fabExitAnimation() {
+        binding.fab.animate().translationX(300f).apply {
+            duration = 300
+        }.start()
+        binding.scrollToTop.animate().translationX(300f).apply {
+            duration = 300
+        }.start()
+    }
+
+    private fun fabEnterAnimation() {
+        binding.fab.animate().translationX(0f).apply {
+            duration = 300
+        }.start()
+        binding.scrollToTop.animate().translationX(0f).apply {
+            duration = 300
+        }.start()
+    }
+
+    private fun setupOther() {
+        binding.fab.setOnClickListener {
+            if (childFragmentManager.fragments.size == 0) {
+                filter.show(childFragmentManager, FilterFragment.TAG)
+            }
+        }
+
+        binding.scrollToTop.setOnClickListener {
+            binding.viewRC.scrollToPosition(0)
+        }
+        binding.motionLayout.jumpToState(R.id.start)
+        binding.motionLayout.setTransitionListener(object: MotionLayout.TransitionListener {
+            override fun onTransitionStarted(motionLayout: MotionLayout?, startId: Int, endId: Int) {
+                TODO("Not yet implemented")
+            }
+            override fun onTransitionChange(motionLayout: MotionLayout?, startId: Int, endId: Int, progress: Float) {
+                TODO("Not yet implemented")
+            }
+            override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
+                if (currentId == motionLayout?.startState) {
+                    binding.viewRC.scrollToPosition(0)
+                }
+            }
+
+            override fun onTransitionTrigger(motionLayout: MotionLayout?, triggerId: Int, positive: Boolean, progress: Float) {}
+
+        })
     }
 
     override fun onResume() {

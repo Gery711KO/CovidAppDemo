@@ -15,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_bottom"
-        android:theme="@style/ThemeOverlay.Material3.Dark">
+        android:theme="@style/ThemeOverlay.Material3.Dark"
+        android:elevation="7dp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -55,7 +56,7 @@
                         android:layout_marginRight="20dp"
                         android:background="@drawable/vaccinated_border"
                         android:fontFamily="@font/armata"
-                        android:gravity="center|left"
+                        android:gravity="center|start"
                         android:padding="16dp"
                         android:textColor="@color/vaccinatedTextColor"
                         android:textSize="24sp"
@@ -104,7 +105,7 @@
                         android:layout_marginRight="20dp"
                         android:background="@drawable/vaccinated_border"
                         android:fontFamily="@font/armata"
-                        android:gravity="center|left"
+                        android:gravity="center|start"
                         android:padding="16dp"
                         android:textColor="@color/deadTextColor"
                         android:textSize="24sp"
@@ -169,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:paddingLeft="24dp"
+                    android:paddingStart="24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -182,9 +183,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/armata"
-                    android:paddingLeft="16dp"
+                    android:paddingStart="16dp"
                     android:paddingTop="16dp"
-                    android:paddingRight="24dp"
+                    android:paddingEnd="24dp"
                     android:text="@string/noInternet"
                     android:textAlignment="center"
                     android:textAllCaps="false"
@@ -202,12 +203,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="56dp"
                     android:gravity="center"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="24dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="24dp"
                     android:paddingBottom="16dp"
                     android:text="A frissítéshez húzza le az ujját a képernyőn."
                     android:textColor="@color/mainTextColor"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -324,10 +325,9 @@
             android:layout_height="match_parent"
             android:scrollbars="vertical"
             android:verticalScrollbarPosition="right"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -363,18 +363,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:layoutDescription="@xml/filtering_scene"
-        android:elevation="12dp">
+        app:layoutDescription="@xml/filtering_scene">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/filtering_dialog"
-            android:background="@drawable/rounded_bottomsheet_dialog"
-            android:backgroundTint="@color/fullDarkColor"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/line">
+
+            <ImageView
+                android:id="@+id/background"
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_bottomsheet_dialog"
+                android:backgroundTint="@color/fullDarkColor"
+                android:layout_height="110dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:elevation="7dp"/>
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="90dp"
+                android:background="@drawable/top_shadow"
+                app:layout_constraintBottom_toBottomOf="@id/filtering_dialog" />
 
             <!-- Circular progress indicator-->
             <com.google.android.material.progressindicator.CircularProgressIndicator
@@ -385,32 +401,31 @@
                 android:indeterminate="true"
                 android:padding="16dp"
                 app:indicatorColor="@color/progressBarCircleColor"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/background"
                 app:layout_constraintEnd_toStartOf="@id/tooltip"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="@id/background"
+                app:layout_constraintTop_toTopOf="@id/background"
+                android:elevation="7dp"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tooltip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="24dp"
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/armata"
                 android:padding="16dp"
                 android:text="Szűrés folyamatban...\nKérem várjon!"
                 android:textAlignment="center"
                 android:textColor="@color/titleColor"
-                android:textSize="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/background"
+                app:layout_constraintEnd_toEndOf="@id/background"
                 app:layout_constraintStart_toEndOf="@id/filteringProgress"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@id/background"
+                android:elevation="7dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     </androidx.constraintlayout.motion.widget.MotionLayout>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

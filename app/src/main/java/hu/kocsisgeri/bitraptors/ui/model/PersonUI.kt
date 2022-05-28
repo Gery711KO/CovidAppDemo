@@ -6,6 +6,4 @@ import hu.kocsisgeri.bitraptors.ui.adapter.ListItem
 data class PersonUI(
     val person: Person,
     val isOpened: Boolean
-) : ListItem {
-
-}
+) : ListItem

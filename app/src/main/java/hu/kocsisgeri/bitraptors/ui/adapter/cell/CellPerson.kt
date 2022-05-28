@@ -22,6 +22,7 @@ fun cellPersonDelegate(select: (Int) -> Unit) =
                     select(item.person.id)
                 }
             }
+
             bind {
                 if (item.isOpened) {
                     binding.pIllnessText.visibility = View.VISIBLE
