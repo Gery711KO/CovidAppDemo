@@ -21,16 +21,19 @@ class MainViewModel(private val repo: CovidRepository) : ViewModel() {
             }
         }
     }.asLiveData()
-    val vaccinated = repo.getCovidVaccinated().asLiveData()
-    val maxId = repo.getCovidMaxId().asLiveData()
 
-    val vaccinatedLoaded = MutableSharedFlow<String?>(0, 100)
-    val maxIdLoaded = MutableSharedFlow<String?>(0, 100)
-    val dataLoaded = vaccinatedLoaded.combine(maxIdLoaded) { vaccinated, maxid ->
-        if (!vaccinated.isNullOrBlank() && !maxid.isNullOrBlank()) {
-            ApiResult.Success(DataModel(vaccinated, maxid))
-        } else {
-            ApiResult.Error("Not loaded!")
+    val dataLoaded = repo.getCovidVaccinated().combine(repo.getCovidMaxId()) { vaccinated, maxId ->
+        when {
+            vaccinated is ApiResult.Success && maxId is ApiResult.Success -> {
+                if (vaccinated.data.isNotBlank() && maxId.data.isNotBlank()) {
+                    ApiResult.Success(DataModel(vaccinated.data, maxId.data))
+                } else {
+                    ApiResult.Error("Not loaded!")
+                }
+            }
+            else -> {
+                ApiResult.Error("Unknown error!")
+            }
         }
     }.asLiveData()
 

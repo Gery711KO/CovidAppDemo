@@ -89,18 +89,6 @@ class MainFragment : Fragment() {
     }
 
     private fun setupDataLoadedObserver() {
-        viewModel.vaccinated.observe(viewLifecycleOwner) {
-            when (it) {
-                is ApiResult.Success -> { viewModel.vaccinatedLoaded.tryEmit(it.data) }
-                is ApiResult.Error -> { viewModel.vaccinatedLoaded.tryEmit(null) }
-            }
-        }
-        viewModel.maxId.observe(viewLifecycleOwner) {
-            when (it) {
-                is ApiResult.Success -> { viewModel.maxIdLoaded.tryEmit(it.data) }
-                is ApiResult.Error -> { viewModel.maxIdLoaded.tryEmit(null) }
-            }
-        }
         viewModel.dataLoaded.observe(viewLifecycleOwner) {
             when(it) {
                 is ApiResult.Success -> {
