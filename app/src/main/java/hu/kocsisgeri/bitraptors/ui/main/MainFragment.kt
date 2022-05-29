@@ -5,27 +5,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import hu.kocsisgeri.bitraptors.R
+import hu.kocsisgeri.bitraptors.data.logic.isOnline
 import hu.kocsisgeri.bitraptors.data.repository.ApiResult
 import hu.kocsisgeri.bitraptors.databinding.FragmentMainBinding
 import hu.kocsisgeri.bitraptors.ui.adapter.DiffListAdapter
-import hu.kocsisgeri.bitraptors.ui.adapter.ListItem
 import hu.kocsisgeri.bitraptors.ui.adapter.NotifyingLinearLayoutManager
 import hu.kocsisgeri.bitraptors.ui.adapter.cell.cellEmptyDelegate
 import hu.kocsisgeri.bitraptors.ui.adapter.cell.cellPersonDelegate
 import hu.kocsisgeri.bitraptors.ui.decoration.ItemOffsetDecoration
 import hu.kocsisgeri.bitraptors.ui.filter.FilterFragment
 import hu.kocsisgeri.bitraptors.ui.model.EmptyUI
-import kotlinx.android.synthetic.main.fragment_main.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.text.Bidi
+import timber.log.Timber
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
@@ -34,6 +28,7 @@ class MainFragment : Fragment() {
     private val listAdapter = DiffListAdapter()
     private val decoration = ItemOffsetDecoration()
     private val filter = FilterFragment()
+    private var isError = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +53,7 @@ class MainFragment : Fragment() {
         viewModel.covids.observe(viewLifecycleOwner) {
             when (it) {
                 is ApiResult.Success -> {
+                    Timber.d("DEBUG: SUCCESS")
                     listAdapter.updateData(it.data)
                     binding.caseCount.text = it.data.size.toString()
                     binding.motionDownload.transitionToStart()
@@ -67,22 +63,28 @@ class MainFragment : Fragment() {
                     if (!binding.viewRC.isComputingLayout) {
                         binding.motionLayout.transitionToStart()
                     }
+                    if (isError) {
+                        listAdapter.addItem(EmptyUI())
+                    }
                     binding.swipeToRefresh.isRefreshing = false
+                    isError = binding.progressBar.progress != 100
                 }
                 is ApiResult.Progress -> {
+                    Timber.d("DEBUG: PROGRESS")
                     listAdapter.updateData(listOf())
                     binding.caseCount.visibility = View.GONE
                     binding.progressBar.visibility = View.VISIBLE
                     binding.motionDownload.transitionToEnd()
                     binding.progressBar.progress = it.percentage
                     binding.swipeToRefresh.isRefreshing = false
+                    isError = false
                 }
                 is ApiResult.Error -> {
-                    if (binding.viewRC.adapter?.itemCount == 0) {
-                        listAdapter.updateData(listOf(EmptyUI()))
-                    }
+                    Timber.d("DEBUG: ERROR")
                     binding.motionDownload.transitionToStart()
+                    binding.progressBar.visibility = View.GONE
                     binding.swipeToRefresh.isRefreshing = false
+                    isError = true
                 }
             }
         }
@@ -111,8 +113,17 @@ class MainFragment : Fragment() {
         binding.swipeToRefresh.setProgressBackgroundColorSchemeColor(Color.rgb(14, 14, 14))
         binding.swipeToRefresh.setColorSchemeColors(Color.rgb(218, 218, 218))
         binding.swipeToRefresh.setOnRefreshListener {
-            if (!loadingData()) {
-                viewModel.refreshFunc()
+            Timber.d("DEBUG: SWIPETOREFRESH - loading: ${!loadingData()} - $isError")
+            if (!loadingData() || isError) {
+                if (isOnline(context)) {
+                    viewModel.refreshFunc()
+                    if (isError) {
+                        binding.motionDownload.transitionToEnd()
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                } else {
+                    binding.swipeToRefresh.isRefreshing = false
+                }
             }
         }
     }
@@ -126,6 +137,9 @@ class MainFragment : Fragment() {
         }
         (binding.viewRC.layoutManager as NotifyingLinearLayoutManager).mCallback = object : NotifyingLinearLayoutManager.OnLayoutCompleteCallback {
             override fun onLayoutComplete() {
+                if (isError) {
+                    binding.viewRC.smoothScrollToPosition(0)
+                }
                 fabEnterAnimation()
                 binding.motionLayout.transitionToStart()
             }
@@ -188,7 +202,7 @@ class MainFragment : Fragment() {
         }
     }
 
-    fun loadingData() : Boolean {
+    private fun loadingData() : Boolean {
         return !(binding.progressBar.progress == binding.progressBar.max || binding.progressBar.progress == 0)
     }
 }

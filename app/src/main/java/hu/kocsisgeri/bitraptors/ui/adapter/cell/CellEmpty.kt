@@ -16,7 +16,5 @@ fun cellEmptyDelegate() =
         viewBinding = { layoutInflater, root ->
             CellEmptyBinding.inflate(layoutInflater, root, false)
         },
-        block = {
-            binding.emptyRoot
-        }
+        block = {}
     )

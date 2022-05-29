@@ -250,7 +250,7 @@
             android:layout_height="wrap_content"
             android:indeterminate="false"
             android:max="100"
-            android:visibility="visible"
+            android:visibility="gone"
             app:indicatorColor="@color/progressBarCircleColor"
             tools:visibility="visible" />
 

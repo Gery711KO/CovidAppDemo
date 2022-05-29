@@ -34,6 +34,14 @@ class DiffListAdapter(
         items = list
     }
 
+
+    fun addItem(item: ListItem) {
+        val list : MutableList<ListItem> = mutableListOf()
+        list.add(item)
+        list.addAll(listItems)
+        items = list
+    }
+
     companion object {
         private val diffCallback: DiffUtil.ItemCallback<ListItem> =
             object : DiffUtil.ItemCallback<ListItem>() {
